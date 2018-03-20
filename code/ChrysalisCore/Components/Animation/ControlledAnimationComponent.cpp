@@ -118,7 +118,7 @@ void CControlledAnimationComponent::ResetObject()
 }
 
 
-void CControlledAnimationComponent::ProcessEvent(SEntityEvent& event)
+void CControlledAnimationComponent::ProcessEvent(const SEntityEvent& event)
 {
 	switch (event.event)
 	{

@@ -54,7 +54,7 @@ void CEntityAwarenessComponent::Initialize()
 }
 
 
-void CEntityAwarenessComponent::ProcessEvent(SEntityEvent& event)
+void CEntityAwarenessComponent::ProcessEvent(const SEntityEvent& event)
 {
 	switch (event.event)
 	{

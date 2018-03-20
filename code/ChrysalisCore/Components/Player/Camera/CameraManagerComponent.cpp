@@ -59,7 +59,7 @@ void CCameraManagerComponent::Initialize()
 }
 
 
-void CCameraManagerComponent::ProcessEvent(SEntityEvent& event)
+void CCameraManagerComponent::ProcessEvent(const SEntityEvent& event)
 {
 	switch (event.event)
 	{

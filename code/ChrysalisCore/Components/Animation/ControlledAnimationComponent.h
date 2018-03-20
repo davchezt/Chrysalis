@@ -17,8 +17,8 @@ protected:
 
 	// IEntityComponent
 	virtual void Initialize() final;
-	virtual void ProcessEvent(SEntityEvent& event) final;
-	uint64 GetEventMask() const { return Cry::DefaultComponents::CBaseMeshComponent::GetEventMask() | BIT64(ENTITY_EVENT_UPDATE); }
+	void ProcessEvent(const SEntityEvent& event) override;
+	uint64 GetEventMask() const { return Cry::DefaultComponents::CBaseMeshComponent::GetEventMask() | ENTITY_EVENT_BIT(ENTITY_EVENT_UPDATE); }
 	// ~IEntityComponent
 
 public:

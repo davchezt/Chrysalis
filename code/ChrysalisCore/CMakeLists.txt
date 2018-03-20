@@ -66,12 +66,6 @@ add_sources("Character_uber.cpp"
 		"Actor/Character/CharacterAttributesComponent.h"
 		"Actor/Character/CharacterComponent.h"
 )
-add_sources("Inventory_uber.cpp"
-    PROJECTS Chrysalis
-    SOURCE_GROUP "Actor\\\\Inventory"
-		"Actor/Inventory/EntityInventory.cpp"
-		"Actor/Inventory/EntityInventory.h"
-)
 add_sources("Mount_uber.cpp"
     PROJECTS Chrysalis
     SOURCE_GROUP "Actor\\\\Mount"
@@ -410,36 +404,46 @@ add_sources("Utility_uber.cpp"
 
 end_sources()
 
-CryEngineModule(Chrysalis PCH "StdAfx.cpp" SOLUTION_FOLDER "Project")
+CryEngineModule(Chrysalis FORCE_SHARED PCH "StdAfx.cpp" SOLUTION_FOLDER "Project")
 
 target_include_directories(${THIS_PROJECT}
-PRIVATE 
+PRIVATE
     "${CRYENGINE_DIR}/Code/CryEngine/CryCommon"
     "${CRYENGINE_DIR}/Code/CryEngine/CryAction"
-	"${CRYENGINE_DIR}/Code/CryEngine/CrySchematyc/Core/Interface"
-	"${CRYENGINE_DIR}/Code/CryPlugins/CryDefaultEntities/Module"
+    "${CRYENGINE_DIR}/Code/CryEngine/CrySchematyc/Core/Interface"
+    "${CRYENGINE_DIR}/Code/CryPlugins/CryDefaultEntities/Module"
 )
 
+
+if(OPTION_ENGINE)
+    if(NOT EXISTS "${CRYENGINE_DIR}/Code/Sandbox/EditorQt")
+		add_library(Editor STATIC "${CRYENGINE_DIR}/Code/CryEngine/CryCommon/CryCore/Platform/platform.h")
+		set_target_properties(Editor PROPERTIES LINKER_LANGUAGE CXX)
+		if (WIN32)
+			set_visual_studio_debugger_command(Editor "${CRYENGINE_DIR}/bin/win_x64/Sandbox.exe" "-project \"D:/Chrysalis/Chrysalis.cryproject\"")
+		endif()
+	endif()
+else()
+	add_library(GameLauncher STATIC "${CRYENGINE_DIR}/Code/CryEngine/CryCommon/CryCore/Platform/platform.h")
+	set_target_properties(GameLauncher PROPERTIES LINKER_LANGUAGE CXX)
+	if (WIN32)
+		set_visual_studio_debugger_command(GameLauncher "${CRYENGINE_DIR}/bin/win_x64/GameLauncher.exe" "-project \"D:/Chrysalis/Chrysalis.cryproject\"")
+	endif()
+
+    add_library(Editor STATIC "${CRYENGINE_DIR}/Code/CryEngine/CryCommon/CryCore/Platform/platform.h")
+    set_target_properties(Editor PROPERTIES LINKER_LANGUAGE CXX)
+    if (WIN32)
+        set_visual_studio_debugger_command(Editor "${CRYENGINE_DIR}/bin/win_x64/Sandbox.exe" "-project \"D:/Chrysalis/Chrysalis.cryproject\"")
+    endif()
+
+	add_library(GameServer STATIC "${CRYENGINE_DIR}/Code/CryEngine/CryCommon/CryCore/Platform/platform.h")
+	set_target_properties(GameServer PROPERTIES LINKER_LANGUAGE CXX)
+	if (WIN32)
+		set_visual_studio_debugger_command(GameServer "${CRYENGINE_DIR}/bin/win_x64/Game_Server.exe" "-project \"D:/Chrysalis/Chrysalis.cryproject\"")
+	endif()
+endif()
+
 # Set StartUp project in Visual Studio
-
-add_library(GameLauncher STATIC "${CRYENGINE_DIR}/Code/CryEngine/CryCommon/CryCore/Platform/platform.h")
-set_target_properties(GameLauncher PROPERTIES LINKER_LANGUAGE CXX)
-if (WIN32)
-    set_visual_studio_debugger_command(GameLauncher "${CRYENGINE_DIR}/bin/win_x64/GameLauncher.exe" "-project \"D:/Chrysalis/Chrysalis.cryproject\"")
-endif()
-
-add_library(Sandbox STATIC "${CRYENGINE_DIR}/Code/CryEngine/CryCommon/CryCore/Platform/platform.h")
-set_target_properties(Sandbox PROPERTIES LINKER_LANGUAGE CXX)
-if (WIN32)
-    set_visual_studio_debugger_command(Sandbox "${CRYENGINE_DIR}/bin/win_x64/Sandbox.exe" "-project \"D:/Chrysalis/Chrysalis.cryproject\"")
-endif()
-
-add_library(GameServer STATIC "${CRYENGINE_DIR}/Code/CryEngine/CryCommon/CryCore/Platform/platform.h")
-set_target_properties(GameServer PROPERTIES LINKER_LANGUAGE CXX)
-if (WIN32)
-    set_visual_studio_debugger_command(GameServer "${CRYENGINE_DIR}/bin/win_x64/Game_Server.exe" "-project \"D:/Chrysalis/Chrysalis.cryproject\"")
-endif()
-
 set_solution_startup_target(GameLauncher)
 
 if (WIN32)

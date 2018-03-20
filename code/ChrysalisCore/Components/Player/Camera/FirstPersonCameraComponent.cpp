@@ -34,7 +34,7 @@ void CFirstPersonCameraComponent::Initialize()
 }
 
 
-void CFirstPersonCameraComponent::ProcessEvent(SEntityEvent& event)
+void CFirstPersonCameraComponent::ProcessEvent(const SEntityEvent& event)
 {
 	switch (event.event)
 	{
@@ -107,7 +107,7 @@ void CFirstPersonCameraComponent::Update()
 
 void CFirstPersonCameraComponent::OnActivate()
 {
-	m_EventMask |= BIT64(ENTITY_EVENT_UPDATE);
+	m_EventMask |= ENTITY_EVENT_BIT(ENTITY_EVENT_UPDATE);
 	GetEntity()->UpdateComponentEventMask(this);
 	ResetCamera();
 }
@@ -115,7 +115,7 @@ void CFirstPersonCameraComponent::OnActivate()
 
 void CFirstPersonCameraComponent::OnDeactivate()
 {
-	m_EventMask &= ~BIT64(ENTITY_EVENT_UPDATE);
+	m_EventMask &= ~ENTITY_EVENT_BIT(ENTITY_EVENT_UPDATE);
 	GetEntity()->UpdateComponentEventMask(this);
 }
 

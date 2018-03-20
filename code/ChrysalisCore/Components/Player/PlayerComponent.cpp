@@ -49,7 +49,7 @@ void CPlayerComponent::Initialize()
 }
 
 
-void CPlayerComponent::ProcessEvent(SEntityEvent& event)
+void CPlayerComponent::ProcessEvent(const SEntityEvent& event)
 {
 	switch (event.event)
 	{

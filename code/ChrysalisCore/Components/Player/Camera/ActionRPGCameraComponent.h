@@ -18,7 +18,7 @@ protected:
 
 	// IEntityComponent
 	void Initialize() override;
-	void ProcessEvent(SEntityEvent& event) override;
+	void ProcessEvent(const SEntityEvent& event) override;
 	uint64 GetEventMask() const { return m_EventMask; }
 	void OnShutDown() override;
 	// ~IEntityComponent

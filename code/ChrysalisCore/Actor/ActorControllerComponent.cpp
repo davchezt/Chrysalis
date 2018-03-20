@@ -53,7 +53,7 @@ void CActorControllerComponent::Initialize()
 }
 
 
-void CActorControllerComponent::ProcessEvent(SEntityEvent& event)
+void CActorControllerComponent::ProcessEvent(const SEntityEvent& event)
 {
 	switch (event.event)
 	{

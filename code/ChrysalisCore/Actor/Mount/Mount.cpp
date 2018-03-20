@@ -29,7 +29,7 @@ void CMountComponent::Initialize()
 }
 
 
-void CMountComponent::ProcessEvent(SEntityEvent& event)
+void CMountComponent::ProcessEvent(const SEntityEvent& event)
 {
 	switch (event.event)
 	{

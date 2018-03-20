@@ -51,7 +51,7 @@ void CGaugeComponent::Initialize()
 }
 
 
-void CGaugeComponent::ProcessEvent(SEntityEvent& event)
+void CGaugeComponent::ProcessEvent(const SEntityEvent& event)
 {
 	switch (event.event)
 	{

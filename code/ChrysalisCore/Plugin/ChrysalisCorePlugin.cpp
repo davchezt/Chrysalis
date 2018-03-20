@@ -2,7 +2,6 @@
 
 #include "ChrysalisCorePlugin.h"
 #include <CryDynamicResponseSystem/IDynamicResponseSystem.h>
-#include <CryExtension/ICryPluginManager.h>
 #include <CrySchematyc/Env/IEnvRegistry.h>
 #include <CrySchematyc/Env/EnvPackage.h>
 #include <CrySchematyc/Utils/SharedString.h>

@@ -48,7 +48,7 @@ void CPlayerInputComponent::Initialize()
 }
 
 
-void CPlayerInputComponent::ProcessEvent(SEntityEvent& event)
+void CPlayerInputComponent::ProcessEvent(const SEntityEvent& event)
 {
 	switch (event.event)
 	{

@@ -55,21 +55,23 @@ void CProceduralContextAim::InitialisePoseBlenderAim()
 		float fadeOutSeconds = 0.25f;
 		float fadeOutMinDistance = 0.f;
 
-		IScriptTable* pScriptTable = m_entity->GetScriptTable();
-		if (pScriptTable)
-		{
-			SmartScriptTable pProceduralContextAimTable;
-			pScriptTable->GetValue("ProceduralContextAim", pProceduralContextAimTable);
-			if (pProceduralContextAimTable)
-			{
-				pProceduralContextAimTable->GetValue("polarCoordinatesSmoothTimeSeconds", m_defaultPolarCoordinatesSmoothTimeSeconds);
-				pProceduralContextAimTable->GetValue("polarCoordinatesMaxYawDegreesPerSecond", polarCoordinatesMaxYawDegreesPerSecond);
-				pProceduralContextAimTable->GetValue("polarCoordinatesMaxPitchDegreesPerSecond", polarCoordinatesMaxPitchDegreesPerSecond);
-				pProceduralContextAimTable->GetValue("fadeInSeconds", fadeInSeconds);
-				pProceduralContextAimTable->GetValue("fadeOutSeconds", fadeOutSeconds);
-				pProceduralContextAimTable->GetValue("fadeOutMinDistance", fadeOutMinDistance);
-			}
-		}
+		// HACK: FIX: This is now deprecated.
+
+		//IScriptTable* pScriptTable = m_entity->GetScriptTable();
+		//if (pScriptTable)
+		//{
+		//	SmartScriptTable pProceduralContextAimTable;
+		//	pScriptTable->GetValue("ProceduralContextAim", pProceduralContextAimTable);
+		//	if (pProceduralContextAimTable)
+		//	{
+		//		pProceduralContextAimTable->GetValue("polarCoordinatesSmoothTimeSeconds", m_defaultPolarCoordinatesSmoothTimeSeconds);
+		//		pProceduralContextAimTable->GetValue("polarCoordinatesMaxYawDegreesPerSecond", polarCoordinatesMaxYawDegreesPerSecond);
+		//		pProceduralContextAimTable->GetValue("polarCoordinatesMaxPitchDegreesPerSecond", polarCoordinatesMaxPitchDegreesPerSecond);
+		//		pProceduralContextAimTable->GetValue("fadeInSeconds", fadeInSeconds);
+		//		pProceduralContextAimTable->GetValue("fadeOutSeconds", fadeOutSeconds);
+		//		pProceduralContextAimTable->GetValue("fadeOutMinDistance", fadeOutMinDistance);
+		//	}
+		//}
 
 		m_defaultPolarCoordinatesMaxSmoothRateRadiansPerSecond = Vec2(DEG2RAD(polarCoordinatesMaxYawDegreesPerSecond), DEG2RAD(polarCoordinatesMaxPitchDegreesPerSecond));
 

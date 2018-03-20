@@ -65,7 +65,7 @@ void CTimePieceComponent::Initialize()
 }
 
 
-void CTimePieceComponent::ProcessEvent(SEntityEvent& event)
+void CTimePieceComponent::ProcessEvent(const SEntityEvent& event)
 {
 	switch (event.event)
 	{

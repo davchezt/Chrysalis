@@ -23,7 +23,6 @@
 #include <Components/Player/Camera/ICameraComponent.h>
 #include <Components/Interaction/EntityAwarenessComponent.h>
 #include <Components/Interaction/EntityInteractionComponent.h>
-#include <Components/Inventory/InventoryComponent.h>
 #include <Components/Equipment/EquipmentComponent.h>
 #include <Components/Snaplocks/SnaplockComponent.h>
 #include <CryDynamicResponseSystem/IDynamicResponseSystem.h>
@@ -68,19 +67,6 @@ void CActorComponent::ReflectType(Schematyc::CTypeDesc<CActorComponent>& desc)
 
 CActorComponent::~CActorComponent()
 {
-	// Inventory takes a little extra work to break down.
-	// TODO: CRITICAL: HACK: BROKEN: !!
-	//if (m_pInventory)
-	//{
-	//	if (IItem* item = GetCurrentItem())
-	//	{
-	//		if (item->IsUsed())
-	//			item->StopUse(GetEntityId());
-	//	}
-
-	//	if (gEnv->bServer)
-	//		m_pInventory->Destroy();
-	//}
 }
 
 
@@ -150,7 +136,7 @@ void CActorComponent::Initialize()
 }
 
 
-void CActorComponent::ProcessEvent(SEntityEvent& event)
+void CActorComponent::ProcessEvent(const SEntityEvent& event)
 {
 	switch (event.event)
 	{

@@ -29,7 +29,7 @@ void CPetComponent::Initialize()
 }
 
 
-void CPetComponent::ProcessEvent(SEntityEvent& event)
+void CPetComponent::ProcessEvent(const SEntityEvent& event)
 {
 	switch (event.event)
 	{

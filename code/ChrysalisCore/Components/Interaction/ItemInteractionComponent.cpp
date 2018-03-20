@@ -47,7 +47,7 @@ void CItemInteractionComponent::Initialize()
 }
 
 
-void CItemInteractionComponent::ProcessEvent(SEntityEvent& event)
+void CItemInteractionComponent::ProcessEvent(const SEntityEvent& event)
 {
 	switch (event.event)
 	{

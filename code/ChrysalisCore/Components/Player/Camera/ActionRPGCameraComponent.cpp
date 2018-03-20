@@ -39,7 +39,7 @@ void CActionRPGCameraComponent::Initialize()
 }
 
 
-void CActionRPGCameraComponent::ProcessEvent(SEntityEvent& event)
+void CActionRPGCameraComponent::ProcessEvent(const SEntityEvent& event)
 {
 	switch (event.event)
 	{
@@ -324,7 +324,7 @@ void CActionRPGCameraComponent::AttachToEntity(EntityId entityId)
 
 void CActionRPGCameraComponent::OnActivate()
 {
-	m_EventMask |= BIT64(ENTITY_EVENT_UPDATE);
+	m_EventMask |= ENTITY_EVENT_BIT(ENTITY_EVENT_UPDATE);
 	GetEntity()->UpdateComponentEventMask(this);
 	ResetCamera();
 
@@ -335,7 +335,7 @@ void CActionRPGCameraComponent::OnActivate()
 
 void CActionRPGCameraComponent::OnDeactivate()
 {
-	m_EventMask &= ~BIT64(ENTITY_EVENT_UPDATE);
+	m_EventMask &= ~ENTITY_EVENT_BIT(ENTITY_EVENT_UPDATE);
 	GetEntity()->UpdateComponentEventMask(this);
 }
 

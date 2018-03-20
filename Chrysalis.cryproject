@@ -1,126 +1,54 @@
 {
-    "console_commands": [
-        {
-            "name": "map",
-            "value": "test_all"
-        }
-    ],
-    "console_variables": [
-        {
-            "name": "camera_manager_default_camera",
-            "value": "1"
-        },
-        {
-            "name": "r_Fullscreen",
-            "value": "0"
-        },
-        {
-            "name": "r_Width",
-            "value": "1440"
-        },
-        {
-            "name": "r_Height",
-            "value": "900"
-        },
-        {
-            "name": "ed_lowercasepaths",
-            "value": "1"
-        },
-        {
-            "name": "e_waterocean",
-            "value": "0"
-        },
-        {
-            "name": "r_displayinfo",
-            "value": "0"
-        },
-        {
-            "name": "e_permanentrenderobjects",
-            "value": "0"
-        },
-        {
-            "name": "s_AudioImplName",
-            "value": "CryAudioImplWwise"
-        },
-        {
-            "name": "ca_useIMG_AIM",
-            "value": "0"
-        },
-        {
-            "name": "ca_UseLookIK",
-            "value": "1"
-        },
-        {
-            "name": "ca_UseAimIK",
-            "value": "1"
-        },
-        {
-            "name": "ca_useIMG_CAF",
-            "value": "0"
-        },
-        {
-            "name": "ca_DrawAimIKVEGrid",
-            "value": "1"
-        },
-        {
-            "name": "drs_dialogSubtitles",
-            "value": "1"
-        },
-        {
-            "name": "ed_usedevmanager",
-            "value": "0"
-        },
-        {
-            "name": "component_awareness_debug",
-            "value": "0"
-        },
-        {
-            "name": "gfx_uiaction_folder",
-            "value": "assets/ui/default/uiactions"
-        }
-    ],
-    "content": {
-        "assets": [
-            "assets"
-        ],
-        "code": [
-            "code/ChrysalisCore"
-        ],
-        "libs": [
-            {
-                "name": "Chrysalis",
-                "shared": {
-                    "any": "",
-                    "win_x64": "bin/win_x64/Chrysalis.dll",
-                    "win_x86": ""
-                }
-            }
-        ]
-    },
-    "info": {
-        "name": "Chrysalis"
-    },
-    "require": {
-        "engine": "{2381931f-3f2e-493d-94cf-5a6d3541b2d3}",
-        "plugins": [
-            {
-                "path": "CryDefaultEntities",
-                "type": "EPluginType::Native"
-            },
-            {
-                "path": "CrySensorSystem",
-                "type": "EPluginType::Native"
-            },
-            {
-                "path": "CryPerceptionSystem",
-                "type": "EPluginType::Native"
-            },
-            {
-                "path": "bin/win_x64/Chrysalis.dll",
-                "type": "EPluginType::Native"
-            }
-        ]
-    },
-    "type": "",
-    "version": 1
+	"version": 3,
+	"type": "",
+	"info": { "name": "Chrysalis", "guid": "23e0b72f-7fe7-81f0-a47f-0d86971f957c" },
+	"content": {
+		"assets": [ "assets" ],
+		"code": [ "code/ChrysalisCore" ],
+		"libs": [
+			{
+				"name": "Chrysalis",
+				"shared": {
+					"any": "",
+					"win_x64": "bin/win_x64/Chrysalis.dll",
+					"win_x86": ""
+				}
+			}
+		]
+	},
+	"require": {
+		"engine": "{2381931f-3f2e-493d-94cf-5a6d3541b2d3}",
+		"plugins": [
+			{ "type": "EPluginType::Native", "path": "CryDefaultEntities" },
+			{ "type": "EPluginType::Native", "path": "CrySensorSystem" },
+			{ "type": "EPluginType::Native", "path": "CryPerceptionSystem" },
+			{ "type": "EPluginType::Native", "path": "bin/win_x64/Chrysalis.dll" },
+			{
+				"type": "EPluginType::Native",
+				"path": "CryGamePlatform",
+				"platforms": [ "PS4" ]
+			}
+		]
+	},
+	"console_variables": [
+		{ "name": "camera_manager_default_camera", "value": "1" },
+		{ "name": "r_Fullscreen", "value": "0" },
+		{ "name": "r_Width", "value": "1440" },
+		{ "name": "r_Height", "value": "900" },
+		{ "name": "ed_lowercasepaths", "value": "1" },
+		{ "name": "e_waterocean", "value": "0" },
+		{ "name": "r_displayinfo", "value": "0" },
+		{ "name": "e_permanentrenderobjects", "value": "0" },
+		{ "name": "s_AudioImplName", "value": "CryAudioImplWwise" },
+		{ "name": "ca_useIMG_AIM", "value": "0" },
+		{ "name": "ca_UseLookIK", "value": "1" },
+		{ "name": "ca_UseAimIK", "value": "1" },
+		{ "name": "ca_useIMG_CAF", "value": "0" },
+		{ "name": "ca_DrawAimIKVEGrid", "value": "1" },
+		{ "name": "drs_dialogSubtitles", "value": "1" },
+		{ "name": "ed_usedevmanager", "value": "0" },
+		{ "name": "component_awareness_debug", "value": "0" },
+		{ "name": "gfx_uiaction_folder", "value": "assets/ui/default/uiactions" }
+	],
+	"console_commands": [ { "name": "map", "value": "test_all" } ]
 }

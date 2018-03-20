@@ -52,21 +52,23 @@ void CProceduralContextLook::InitialisePoseBlenderLook()
 		float fadeOutSeconds = 0.25f;
 		float fadeOutMinDistance = 0.f;
 
-		IScriptTable* pScriptTable = m_entity->GetScriptTable();
-		if (pScriptTable)
-		{
-			SmartScriptTable pProceduralContextLookTable;
-			pScriptTable->GetValue("ProceduralContextLook", pProceduralContextLookTable);
-			if (pProceduralContextLookTable)
-			{
-				pProceduralContextLookTable->GetValue("polarCoordinatesSmoothTimeSeconds", polarCoordinatesSmoothTimeSeconds);
-				pProceduralContextLookTable->GetValue("polarCoordinatesMaxYawDegreesPerSecond", polarCoordinatesMaxYawDegreesPerSecond);
-				pProceduralContextLookTable->GetValue("polarCoordinatesMaxPitchDegreesPerSecond", polarCoordinatesMaxPitchDegreesPerSecond);
-				pProceduralContextLookTable->GetValue("fadeInSeconds", fadeInSeconds);
-				pProceduralContextLookTable->GetValue("fadeOutSeconds", fadeOutSeconds);
-				pProceduralContextLookTable->GetValue("fadeOutMinDistance", fadeOutMinDistance);
-			}
-		}
+		// HACK: FIX: This is now deprecated.
+
+		//IScriptTable* pScriptTable = m_entity->GetScriptTable();
+		//if (pScriptTable)
+		//{
+		//	SmartScriptTable pProceduralContextLookTable;
+		//	pScriptTable->GetValue("ProceduralContextLook", pProceduralContextLookTable);
+		//	if (pProceduralContextLookTable)
+		//	{
+		//		pProceduralContextLookTable->GetValue("polarCoordinatesSmoothTimeSeconds", polarCoordinatesSmoothTimeSeconds);
+		//		pProceduralContextLookTable->GetValue("polarCoordinatesMaxYawDegreesPerSecond", polarCoordinatesMaxYawDegreesPerSecond);
+		//		pProceduralContextLookTable->GetValue("polarCoordinatesMaxPitchDegreesPerSecond", polarCoordinatesMaxPitchDegreesPerSecond);
+		//		pProceduralContextLookTable->GetValue("fadeInSeconds", fadeInSeconds);
+		//		pProceduralContextLookTable->GetValue("fadeOutSeconds", fadeOutSeconds);
+		//		pProceduralContextLookTable->GetValue("fadeOutMinDistance", fadeOutMinDistance);
+		//	}
+		//}
 
 		m_pPoseBlenderLook->SetPolarCoordinatesSmoothTimeSeconds(polarCoordinatesSmoothTimeSeconds);
 		m_pPoseBlenderLook->SetPolarCoordinatesMaxRadiansPerSecond(Vec2(DEG2RAD(polarCoordinatesMaxYawDegreesPerSecond), DEG2RAD(polarCoordinatesMaxPitchDegreesPerSecond)));

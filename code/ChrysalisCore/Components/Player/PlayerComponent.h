@@ -34,8 +34,8 @@ protected:
 
 	// IEntityComponent
 	void Initialize() override;
-	virtual void ProcessEvent(SEntityEvent& event) override;
-	uint64 GetEventMask() const { return BIT64(ENTITY_EVENT_START_GAME) | BIT64(ENTITY_EVENT_UPDATE); }
+	virtual void ProcessEvent(const SEntityEvent& event) override;
+	uint64 GetEventMask() const { return ENTITY_EVENT_BIT(ENTITY_EVENT_START_GAME) | ENTITY_EVENT_BIT(ENTITY_EVENT_UPDATE); }
 	// ~IEntityComponent
 
 public:

@@ -5,6 +5,7 @@
 #include "Snaplocks/Snaplock.h"
 #include "DefaultComponents/Geometry/AdvancedAnimationComponent.h"
 #include "DefaultComponents/Physics/CharacterControllerComponent.h"
+#include <Components/Inventory/InventoryComponent.h>
 #include <Components/Player/Input/PlayerInputComponent.h>
 #include <Actor/ActorControllerComponent.h>
 #include <Entities/Interaction/IEntityInteraction.h>
@@ -370,8 +371,8 @@ protected:
 
 	// IEntityComponent
 	void Initialize() override;
-	void ProcessEvent(SEntityEvent& event) override;
-	uint64 GetEventMask() const { return BIT64(ENTITY_EVENT_UPDATE) | BIT64(ENTITY_EVENT_PREPHYSICSUPDATE); }
+	void ProcessEvent(const SEntityEvent& event) override;
+	uint64 GetEventMask() const { return ENTITY_EVENT_BIT(ENTITY_EVENT_UPDATE) | ENTITY_EVENT_BIT(ENTITY_EVENT_PREPHYSICSUPDATE); }
 	// ~IEntityComponent
 
 	virtual void Update(SEntityUpdateContext* pCtx);

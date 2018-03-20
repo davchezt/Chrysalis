@@ -98,7 +98,7 @@ void CActorAnimationActionCooperative::Exit()
 }
 
 
-void CActorAnimationActionCooperative::OnEntityEvent(IEntity *pEntity, SEntityEvent &event)
+void CActorAnimationActionCooperative::OnEntityEvent(IEntity* pEntity, const SEntityEvent& event)
 {
 	if (!pEntity)
 		return;

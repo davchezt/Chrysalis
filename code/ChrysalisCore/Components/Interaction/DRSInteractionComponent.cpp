@@ -42,7 +42,7 @@ void CDRSInteractionComponent::Initialize()
 }
 
 
-void CDRSInteractionComponent::ProcessEvent(SEntityEvent& event)
+void CDRSInteractionComponent::ProcessEvent(const SEntityEvent& event)
 {
 	switch (event.event)
 	{

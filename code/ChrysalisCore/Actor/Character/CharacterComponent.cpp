@@ -40,7 +40,7 @@ void CCharacterComponent::Initialize()
 }
 
 
-void CCharacterComponent::ProcessEvent(SEntityEvent& event)
+void CCharacterComponent::ProcessEvent(const SEntityEvent& event)
 {
 	switch (event.event)
 	{
