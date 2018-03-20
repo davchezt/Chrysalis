@@ -223,9 +223,6 @@ bool CChrysalisCorePlugin::Initialize(SSystemGlobalEnvironment& env, const SSyst
 	// Register for engine system events, in our case we need ESYSTEM_EVENT_GAME_POST_INIT to load the map
 	gEnv->pSystem->GetISystemEventDispatcher()->RegisterListener(this, "CChrysalisCore");
 
-	// Listen for client connection events, in order to create the local player
-	gEnv->pGameFramework->AddNetworkedClientListener(*this);
-
 	// Register all the cvars.
 	g_cvars.RegisterVariables();
 
@@ -284,6 +281,9 @@ void CChrysalisCorePlugin::OnSystemEvent(ESystemEvent event, UINT_PTR wparam, UI
 			// Search the file system to find XML files with definitions for game weapons.
 			// TODO: CRITICAL: HACK: BROKEN: !!
 			//gEnv->pGameFramework->GetIActorSystem()->Scan("Parameters/Actors");
+
+			// Listen for client connection events, in order to create the local player
+			gEnv->pGameFramework->AddNetworkedClientListener(*this);
 
 			// We need to register the procedural contexts.
 			IProceduralClipFactory& proceduralClipFactory = gEnv->pGameFramework->GetMannequinInterface().GetProceduralClipFactory();
