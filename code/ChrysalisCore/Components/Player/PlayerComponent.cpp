@@ -56,7 +56,7 @@ void CPlayerComponent::ProcessEvent(const SEntityEvent& event)
 		case ENTITY_EVENT_START_GAME:
 		{
 			// Revive the entity when gameplay starts
-			Revive();
+			OnRevive();
 		}
 		break;
 
@@ -145,11 +145,11 @@ IActorComponent* CPlayerComponent::GetLocalActor()
 }
 
 
-void CPlayerComponent::Revive()
+void CPlayerComponent::OnRevive()
 {
 	if (auto pActorComponent = GetLocalActor())
 	{
-		pActorComponent->Revive();
+		pActorComponent->OnRevive();
 	}
 }
 
@@ -161,7 +161,7 @@ void CPlayerComponent::NetworkClientConnect()
 	if (IsLocalPlayer())
 		AttachToHero();
 
-	Revive();
+	OnRevive();
 }
 
 

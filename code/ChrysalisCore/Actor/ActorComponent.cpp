@@ -167,7 +167,7 @@ void CActorComponent::Update(SEntityUpdateContext* pCtx)
 
 
 // *** 
-// *** IActor
+// *** IActorComponent
 // *** 
 
 
@@ -259,20 +259,18 @@ const Vec3 CActorComponent::GetLocalEyePos() const
 
 Vec3 CActorComponent::GetLocalLeftHandPos() const
 {
-	// The default, in case we can't find the actual hand position.
+	// A terrible default, in case we can't find the actual hand position.
 	const Vec3 handPosition { -0.2f, 0.3f, 1.3f };
 
 	// Get their character or bail early.
 	auto pCharacter = m_pAdvancedAnimationComponent->GetCharacter();
 	if (pCharacter)
 	{
-		// Determine the position of the left and right eyes, using their average for eyePosition.
 		const IAttachmentManager* pAttachmentManager = pCharacter->GetIAttachmentManager();
 		if (pAttachmentManager)
 		{
 			// Did the animators define a hand bone for us to use?
-			// #TODO: This is from SDK guys. Change this to a well defined name for our skeleton attachments.
-			const auto handBone = pAttachmentManager->GetIndexByName("left_weapon");
+			const auto handBone = pAttachmentManager->GetIndexByName("LeftHand");
 			const IAttachment* pAttachment = pAttachmentManager->GetInterfaceByIndex(handBone);
 			if (pAttachment)
 			{
@@ -288,20 +286,18 @@ Vec3 CActorComponent::GetLocalLeftHandPos() const
 
 Vec3 CActorComponent::GetLocalRightHandPos() const
 {
-	// The default, in case we can't find the actual hand position.
+	// A terrible default, in case we can't find the actual hand position.
 	const Vec3 handPosition { 0.2f, 0.3f, 1.3f };
 
 	// Get their character or bail early.
 	auto pCharacter = m_pAdvancedAnimationComponent->GetCharacter();
 	if (pCharacter)
 	{
-		// Determine the position of the left and right eyes, using their average for eyePosition.
 		const IAttachmentManager* pAttachmentManager = pCharacter->GetIAttachmentManager();
 		if (pAttachmentManager)
 		{
 			// Did the animators define a hand bone for us to use?
-			// #TODO: This is from SDK guys. Change this to a well defined name for our skeleton attachments.
-			const auto handBone = pAttachmentManager->GetIndexByName("weapon");
+			const auto handBone = pAttachmentManager->GetIndexByName("RightHand");
 			const IAttachment* pAttachment = pAttachmentManager->GetInterfaceByIndex(handBone);
 			if (pAttachment)
 			{
@@ -326,51 +322,55 @@ bool CActorComponent::IsViewFirstPerson() const
 }
 
 
-// ***
-// *** IActorEventListener
-// ***
-
-void CActorComponent::OnSpecialMove(IActor* pActor, IActorEventListener::ESpecialMove move)
-{}
-
-
-void CActorComponent::OnDeath(IActor* pActor, bool bIsGod)
+void CActorComponent::OnKill()
 {
 }
 
 
-void CActorComponent::OnRevive(IActor* pActor, bool bIsGod)
+void CActorComponent::OnRevive()
 {
-	Revive();
+	// Mannequin should be reset.
+	ResetMannequin();
+
+	// Controller needs to be reset.
 	m_pActorControllerComponent->OnRevive();
 }
 
 
-void CActorComponent::OnEnterVehicle(IActor* pActor, const char* strVehicleClassName, const char* strSeatName, bool bThirdPerson)
+void CActorComponent::OnDeath()
+{
+}
+
+
+void CActorComponent::OnJump()
 {}
 
 
-void CActorComponent::OnExitVehicle(IActor* pActor)
+void CActorComponent::OnEnterVehicle(const char* strVehicleClassName, const char* strSeatName, bool bThirdPerson)
 {}
 
 
-void CActorComponent::OnHealthChanged(IActor* pActor, float newHealth)
+void CActorComponent::OnExitVehicle()
 {}
 
 
-void CActorComponent::OnItemPickedUp(IActor* pActor, EntityId itemId)
+void CActorComponent::OnHealthChanged(float newHealth)
 {}
 
 
-void CActorComponent::OnItemUsed(IActor* pActor, EntityId itemId)
+void CActorComponent::OnItemPickedUp(EntityId itemId)
 {}
 
 
-void CActorComponent::OnItemDropped(IActor* pActor, EntityId itemId)
+void CActorComponent::OnItemUsed(EntityId itemId)
 {}
 
 
-void CActorComponent::OnSprintStaminaChanged(IActor* pActor, float newStamina)
+void CActorComponent::OnItemDropped(EntityId itemId)
+{}
+
+
+void CActorComponent::OnSprintStaminaChanged(float newStamina)
 {}
 
 
@@ -506,12 +506,6 @@ void CActorComponent::OnResetState()
 }
 
 
-// HACK: NOTE: TODO: I removed this code during the 5.4 refactor because it's hard to see quite how it fits in again.
-// Most of it will need to be added in at some point. 
-
-// TODO: Is this really needed? Perhaps there's a better way to handle it. Revive isn't getting called at present
-// so there must be a better place for this.
-
 void CActorComponent::ResetMannequin()
 {
 	if (m_pActionController)
@@ -527,18 +521,6 @@ void CActorComponent::ResetMannequin()
 		//	animContext.state.Set(m_actorMannequinParams->tagIDs.FP, IsViewFirstPerson());
 
 		//	SetStanceTag(m_pCharacterControllerComponent->GetStance(), animContext.state);
-
-		//	// Install persistent AimPose action
-		//	QueueAction(*new CPlayerBackgroundAction(EActorActionPriority::eAAP_Movement, m_actorMannequinParams->fragmentIDs.AimPose));
-
-		//	// Install persistent WeaponPose action
-		//	QueueAction(*new CPlayerBackgroundAction(EActorActionPriority::eAAP_Lowest, m_actorMannequinParams->fragmentIDs.WeaponPose));
-
-		//	CActionItemIdle *itemIdle = new CActionItemIdle(EActorActionPriority::eAAP_Lowest, m_actorMannequinParams->fragmentIDs.Idle, m_actorMannequinParams->fragmentIDs.IdleBreak, TAG_STATE_EMPTY, *this);
-		//	QueueAction(*itemIdle);
-
-		//	CPlayerMovementAction *movementAction = new CPlayerMovementAction(EActorActionPriority::eAAP_Movement);
-		//	QueueAction(*movementAction);
 
 		// Queue the locomotion action, which switches fragments and tags as needed for actor locomotion.
 		auto locomotionAction = new CActorAnimationActionLocomotion();
@@ -565,21 +547,6 @@ void CActorComponent::ResetMannequin()
 		//	m_weaponFPAiming.ResetMannequin();
 		//}
 	}
-}
-
-
-void CActorComponent::Kill()
-{
-	// #TODO: A *LOT* of code needs to be added here to handle reviving.
-}
-
-
-void CActorComponent::Revive(EReasonForRevive reasonForRevive)
-{
-	// #TODO: A *LOT* of code needs to be added here to handle reviving.
-
-	// Mannequin should be reset.
-	//ResetMannequin();
 }
 
 

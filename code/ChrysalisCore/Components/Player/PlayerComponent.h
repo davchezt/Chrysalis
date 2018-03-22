@@ -238,7 +238,7 @@ public:
 
 
 	/** Revives the atatched character, if there is one. */
-	void Revive();
+	void OnRevive();
 
 	/** A network client has connected to the player. */
 	void NetworkClientConnect();

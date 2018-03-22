@@ -54,7 +54,6 @@ private:
 	const TStateIndex StateGroundInput(CActorControllerComponent& actorControllerComponent, const SInputEventData& inputEvent);
 	void StateSprintInput(CActorControllerComponent& actorControllerComponent, const SInputEventData& inputEvent);
 	void ProcessSprint(CActorControllerComponent& actorControllerComponent, const SActorPrePhysicsData& prePhysicsEvent);
-	void OnSpecialMove(CActorControllerComponent& actorControllerComponent, IActorEventListener::ESpecialMove specialMove);
 
 	void CreateWaterEffects();
 	void ReleaseWaterEffects();
@@ -844,8 +843,8 @@ void CActorStateMovement::ProcessSprint(CActorControllerComponent& actorControll
 		{
 			if (!actorControllerComponent.IsSprinting())
 			{
-				// notify IActorEventListener about sprinting (just once)
-				OnSpecialMove(actorControllerComponent, IActorEventListener::eSM_SpeedSprint);
+				// notify IActorSpecialEvent about sprinting (just once)
+				OnSpecialMove(actorControllerComponent, IActorSpecialEvent::eSM_SpeedSprint);
 			}
 
 			m_flags.AddFlags(eActorStateFlags_Sprinting);
@@ -858,22 +857,6 @@ void CActorStateMovement::ProcessSprint(CActorControllerComponent& actorControll
 		else
 		{
 			m_flags.ClearFlags(eActorStateFlags_Sprinting);
-		}*/
-}
-
-
-void CActorStateMovement::OnSpecialMove(CActorControllerComponent& actorControllerComponent, IActorEventListener::ESpecialMove specialMove)
-{
-	/*	if (!actorControllerComponent.m_CharacterEventListeners.empty() )
-		{
-			CActorControllerComponent::TCharacterEventListeners::const_iterator iter = actorControllerComponent.m_CharacterEventListeners.begin();
-			CActorControllerComponent::TCharacterEventListeners::const_iterator cur;
-			while (iter != actorControllerComponent.m_CharacterEventListeners.end())
-			{
-				cur = iter;
-				++iter;
-				(*cur)->OnSpecialMove(&actorControllerComponent, specialMove);
-			}
 		}*/
 }
 

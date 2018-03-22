@@ -21,7 +21,7 @@
     <RIKHandle Handle="RgtLeg01"/>
     <LIKHandle Handle="LftLeg01"/>
   </FeetLock_Definition>
-  
+
   <LookIK_Definition>
     <REyeAttachment Name="RightEye"/>
     <LEyeAttachment Name="LeftEye"/>
