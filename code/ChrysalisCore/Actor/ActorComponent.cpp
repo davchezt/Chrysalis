@@ -330,7 +330,7 @@ void CActorComponent::OnKill()
 void CActorComponent::OnRevive()
 {
 	// Mannequin should be reset.
-	ResetMannequin();
+	OnResetState();
 
 	// Controller needs to be reset.
 	m_pActorControllerComponent->OnRevive();
@@ -457,41 +457,27 @@ void CActorComponent::OnToggleFirstPerson()
 
 void CActorComponent::OnResetState()
 {
-	const auto pEntity = GetEntity();
-
-	// Select a character definition based on first / third person mode. Hard coding the default scope isn't a great
-	// idea, but it's good enough for now. 
-	if (IsViewFirstPerson())
-	{
-		m_pAdvancedAnimationComponent->SetCharacterFile(m_geometryFirstPerson.value);
-		m_pAdvancedAnimationComponent->SetDefaultScopeContextName("Char1P");
-
-		// TODO: In order to switch the models out, we need to load and reset - but at present that is not removing the
-		// existing models. 
-
-		//m_pAdvancedAnimationComponent->LoadFromDisk();
-		//m_pAdvancedAnimationComponent->ResetCharacter();
-	}
-	else
-	{
-		m_pAdvancedAnimationComponent->SetCharacterFile(m_geometryThirdPerson.value);
-		m_pAdvancedAnimationComponent->SetDefaultScopeContextName("Char3P");
-		//m_pAdvancedAnimationComponent->LoadFromDisk();
-		//m_pAdvancedAnimationComponent->ResetCharacter();
-	}
-
-	// You need to reset the character after changing the animation properties.
-	m_pAdvancedAnimationComponent->ResetCharacter();
-
-	// Queue the locomotion action, which switches fragments and tags as needed for actor locomotion.
-	//auto locomotionAction = new CActorAnimationActionLocomotion();
-	//QueueAction(*locomotionAction);
-
 	// HACK: the CAdvancedAnimation doesn't allow us access to the action controller. This is a workaround.
 	m_pActionController = gEnv->pGameFramework->GetMannequinInterface().FindActionController(*GetEntity());
 
 	if (m_pActionController)
 	{
+		// We're going to clear all the mannequin state, and set it all up again.
+		m_pActionController->Reset();
+
+		// Select a character definition based on first / third person mode. Hard coding the default scope isn't a great
+		// idea, but it's good enough for now. 
+		if (IsViewFirstPerson())
+		{
+			m_pAdvancedAnimationComponent->SetDefaultScopeContextName("Char1P");
+			m_pAdvancedAnimationComponent->SetCharacterFile(m_geometryFirstPerson.value);
+		}
+		else
+		{
+			m_pAdvancedAnimationComponent->SetDefaultScopeContextName("Char3P");
+			m_pAdvancedAnimationComponent->SetCharacterFile(m_geometryThirdPerson.value);
+		}
+
 		// The mannequin tags for an actor will need to be loaded. Because these are found in the controller definition,
 		// they are potentially different for every actor. 
 		m_actorMannequinParams = GetMannequinUserParams<SActorMannequinParams>(m_pActionController->GetContext());
@@ -499,28 +485,16 @@ void CActorComponent::OnResetState()
 		// HACK: quick way to get some debug info out. Need to filter it to only one entity to prevent overlays.
 		if (strcmp(GetEntity()->GetName(), "Hero") == 0)
 			m_pActionController->SetFlag(AC_DebugDraw, true);
-	}
-
-	// Mannequin should also be reset.
-	ResetMannequin();
-}
 
 
-void CActorComponent::ResetMannequin()
-{
-	if (m_pActionController)
-	{
 		//if (IsPlayer() && !IsAIControlled())
 		//{
 		//	m_pActionController->Resume();
-		//m_pActionController->Reset();
 
 		//	SAnimationContext &animContext = m_pActionController->GetContext();
 		//	animContext.state.Set(m_actorMannequinParams->tagIDs.localClient, IsClient());
 		//	animContext.state.SetGroup(m_actorMannequinParams->tagGroupIDs.playMode, gEnv->bMultiplayer ? m_actorMannequinParams->tagIDs.MP : m_actorMannequinParams->tagIDs.SP);
 		//	animContext.state.Set(m_actorMannequinParams->tagIDs.FP, IsViewFirstPerson());
-
-		//	SetStanceTag(m_pCharacterControllerComponent->GetStance(), animContext.state);
 
 		// Queue the locomotion action, which switches fragments and tags as needed for actor locomotion.
 		auto locomotionAction = new CActorAnimationActionLocomotion();
@@ -543,8 +517,6 @@ void CActorComponent::ResetMannequin()
 			QueueAction(*new CActorAnimationActionLookPose());
 			QueueAction(*new CActorAnimationActionLooking());
 		}
-
-		//	m_weaponFPAiming.ResetMannequin();
 		//}
 	}
 }

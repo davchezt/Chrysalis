@@ -494,8 +494,6 @@ protected:
 	additionally by the editor when you both enter and leave game mode. */
 	virtual void OnResetState();
 
-	void ResetMannequin();
-
 private:
 	/** An component which is used to discover entities near the actor. */
 	CEntityAwarenessComponent * m_pAwareness { nullptr };
