@@ -80,5 +80,11 @@
     </AnimLayer>
    </Fragment>
   </Emote>
+  <Looking>
+   <Fragment BlendOutDuration="0.2" Tags=""/>
+  </Looking>
+  <LookPose>
+   <Fragment BlendOutDuration="0.2" Tags=""/>
+  </LookPose>
  </FragmentList>
 </AnimDB>

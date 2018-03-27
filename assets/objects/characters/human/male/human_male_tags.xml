@@ -124,7 +124,11 @@
       <Tag name="InteractionDeadLift" priority="5"/>
       <Tag name="InteractionTurnWheel" priority="5"/>
     </Group>
-    <Tag name="ScopeSlave" priority="4"/>
     <Tag name="Rotate"/>
+    <Tag name="ScopeSlave" priority="4"/>
+    <Tag name="ScopeAimPose"/>
+    <Tag name="ScopeAiming"/>
+    <Tag name="ScopeLookPose"/>
+    <Tag name="ScopeLooking"/>
   </Tags>
 </TagDefinition>

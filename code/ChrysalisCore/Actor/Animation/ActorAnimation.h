@@ -133,6 +133,10 @@ enum EActorActionPriority
 	f( Excited ) \
 	f( Depressed ) \
 	f( ScopeSlave ) /* Misc. */ \
+	f( ScopeAimPose ) \
+	f( ScopeAiming ) \
+	f( ScopeLookPose ) \
+	f( ScopeLooking ) \
 
 #define MAN_ACTOR_TAG_GROUPS( f ) \
     f( Stance ) \
