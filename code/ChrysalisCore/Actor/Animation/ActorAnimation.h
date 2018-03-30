@@ -152,16 +152,10 @@ enum EActorActionPriority
 	//f( MPEnviro )
 
 #define MAN_ACTOR_SCOPES( f ) \
-	//f( FullBody1P ) \
-	//f( FullBody3P ) \
-	//f( Motion1P ) \
-	//f( AimPose ) \
-	//f( Torso1P ) \
-	//f( Torso3P ) \
-	//f( SlaveChar ) \
-	//f( SlaveObject ) \
-	//f(Weapon) \
-	//f(AttachmentBottom)
+	f( FullBody1P ) \
+	f( FullBody3P ) \
+	f( AimPose ) \
+	f( LookPose ) \
 
 #define MAN_MELEE_FRAGMENT_TAGS( f ) \
 	//f( Into ) \

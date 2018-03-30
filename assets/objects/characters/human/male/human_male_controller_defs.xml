@@ -2,8 +2,8 @@
  <Tags filename="objects/characters/human/male/human_male_tags.xml"/>
  <Fragments filename="objects/characters/human/male/human_male_fragment_ids.xml"/>
  <FragmentDefs>
-  <Idle scopes="FullBody1P+FullBody3P+SlaveCharacter+SlaveObject"/>
-  <Move scopes="FullBody1P+FullBody3P"/>
+  <Idle scopes="FullBody1P+FullBody3P+LookPose+SlaveCharacter+SlaveObject"/>
+  <Move scopes="FullBody1P+FullBody3P+LookPose"/>
   <Interaction scopes="FullBody1P+FullBody3P+SlaveCharacter+SlaveObject"/>
   <Emote scopes="FullBody1P+FullBody3P+Torso1P+Torso3P+Audio1+Audio2"/>
   <Aiming scopes="Aiming"/>

@@ -462,6 +462,10 @@ void CActorComponent::OnResetState()
 
 	if (m_pActionController)
 	{
+		// The mannequin tags for an actor will need to be loaded. Because these are found in the controller definition,
+		// they are potentially different for every actor. 
+		m_actorMannequinParams = GetMannequinUserParams<SActorMannequinParams>(m_pActionController->GetContext());
+
 		// We're going to clear all the mannequin state, and set it all up again.
 		m_pActionController->Reset();
 
@@ -478,46 +482,39 @@ void CActorComponent::OnResetState()
 			m_pAdvancedAnimationComponent->SetCharacterFile(m_geometryThirdPerson.value);
 		}
 
-		// The mannequin tags for an actor will need to be loaded. Because these are found in the controller definition,
-		// they are potentially different for every actor. 
-		m_actorMannequinParams = GetMannequinUserParams<SActorMannequinParams>(m_pActionController->GetContext());
-
 		// HACK: quick way to get some debug info out. Need to filter it to only one entity to prevent overlays.
 		if (strcmp(GetEntity()->GetName(), "Hero") == 0)
 			m_pActionController->SetFlag(AC_DebugDraw, true);
-
-
-		//if (IsPlayer() && !IsAIControlled())
-		//{
-		//	m_pActionController->Resume();
-
-		//	SAnimationContext &animContext = m_pActionController->GetContext();
-		//	animContext.state.Set(m_actorMannequinParams->tagIDs.localClient, IsClient());
-		//	animContext.state.SetGroup(m_actorMannequinParams->tagGroupIDs.playMode, gEnv->bMultiplayer ? m_actorMannequinParams->tagIDs.MP : m_actorMannequinParams->tagIDs.SP);
-		//	animContext.state.Set(m_actorMannequinParams->tagIDs.FP, IsViewFirstPerson());
 
 		// Queue the locomotion action, which switches fragments and tags as needed for actor locomotion.
 		auto locomotionAction = new CActorAnimationActionLocomotion();
 		QueueAction(*locomotionAction);
 
-		// Aim actions.
-		//if (CActorAnimationActionAimPose::IsSupported(m_pActionController->GetContext())
-		//	&& CActorAnimationActionAiming::IsSupported(m_pActionController->GetContext()))
-		//{
-		//	m_pProceduralContextAim = static_cast<CProceduralContextAim*>(m_pActionController->FindOrCreateProceduralContext(CProceduralContextAim::GetCID()));
-		//	QueueAction(*new CActorAnimationActionAimPose());
-		//	QueueAction(*new CActorAnimationActionAiming());
-		//}
-
-		//// Look actions.
-		if (CActorAnimationActionLookPose::IsSupported(m_pActionController->GetContext())
-			&& CActorAnimationActionLooking::IsSupported(m_pActionController->GetContext()))
+		// Third person views allow a little extra control.
+		if (!IsViewFirstPerson())
 		{
-			m_pProceduralContextLook = static_cast<CProceduralContextLook*>(m_pActionController->FindOrCreateProceduralContext(CProceduralContextLook::GetCID()));
-			QueueAction(*new CActorAnimationActionLookPose());
-			QueueAction(*new CActorAnimationActionLooking());
+			//// Set the scope tag for look pose.
+			//SAnimationContext &animContext = m_pActionController->GetContext();
+			//animContext.state.Set(m_actorMannequinParams->tagIDs.ScopeLookPose, true);
+
+			//// Aim actions.
+			//if (CActorAnimationActionAimPose::IsSupported(m_pActionController->GetContext())
+			//	&& CActorAnimationActionAiming::IsSupported(m_pActionController->GetContext()))
+			//{
+			//	m_pProceduralContextAim = static_cast<CProceduralContextAim*>(m_pActionController->FindOrCreateProceduralContext(CProceduralContextAim::GetCID()));
+			//	QueueAction(*new CActorAnimationActionAimPose());
+			//	QueueAction(*new CActorAnimationActionAiming());
+			//}
+
+			// Look actions.
+			if (CActorAnimationActionLookPose::IsSupported(m_pActionController->GetContext())
+				&& CActorAnimationActionLooking::IsSupported(m_pActionController->GetContext()))
+			{
+				m_pProceduralContextLook = static_cast<CProceduralContextLook*>(m_pActionController->FindOrCreateProceduralContext(CProceduralContextLook::GetCID()));
+				QueueAction(*new CActorAnimationActionLookPose());
+				QueueAction(*new CActorAnimationActionLooking());
+			}
 		}
-		//}
 	}
 }
 

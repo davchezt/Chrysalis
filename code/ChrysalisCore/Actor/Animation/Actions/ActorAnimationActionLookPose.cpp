@@ -54,12 +54,6 @@ void CActorAnimationActionLookPose::Install()
 {
 	CAnimationAction::Install();
 
-	InitialiseLookPoseBlender();
-}
-
-
-void CActorAnimationActionLookPose::InitialiseLookPoseBlender()
-{
 	IScope& rootScope = GetRootScope();
 	ICharacterInstance* pCharacterInstance = rootScope.GetCharInst();
 	CRY_ASSERT(pCharacterInstance);
