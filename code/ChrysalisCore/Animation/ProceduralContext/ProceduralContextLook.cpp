@@ -1,5 +1,8 @@
 #include "StdAfx.h"
+
 #include "ProceduralContextLook.h"
+#include "Actor/ActorComponent.h"
+
 
 namespace Chrysalis
 {
@@ -7,7 +10,7 @@ CRYREGISTER_CLASS(CProceduralContextLook);
 
 
 CProceduralContextLook::CProceduralContextLook()
-	: m_pPoseBlenderLook(NULL)
+	: m_pPoseBlenderLook(nullptr)
 	, m_gameRequestsLooking(true)
 	, m_procClipRequestsLooking(false)
 	, m_gameLookTarget(0, 0, 0)
@@ -28,15 +31,18 @@ void CProceduralContextLook::InitialisePoseBlenderLook()
 {
 	CRY_ASSERT(m_entity);
 
-	const int slot = 0;
-	ICharacterInstance* pCharacterInstance = m_entity->GetCharacter(slot);
-	if (pCharacterInstance == NULL)
-	{
+	// HACK: Attempt to locate an actor component on the entity. If it exists we can get the character instance. This
+	// will fail for things that aren't actors, but it's a workaround for the old code which was hard coded to slot 0 -
+	// and was failing because of that. 
+	ICharacterInstance* pCharacterInstance = nullptr;
+	auto pActorComponent = m_entity->GetComponent<CActorComponent>();
+	if (pActorComponent)
+		pCharacterInstance = pActorComponent->GetCharacter();
+	else
 		return;
-	}
 
 	ISkeletonPose* pSkeletonPose = pCharacterInstance->GetISkeletonPose();
-	if (pSkeletonPose == NULL)
+	if (pSkeletonPose == nullptr)
 	{
 		return;
 	}
@@ -96,7 +102,7 @@ void CProceduralContextLook::InitialiseGameLookTarget()
 
 void CProceduralContextLook::Update(float timePassedSeconds)
 {
-	if (m_pPoseBlenderLook == NULL)
+	if (m_pPoseBlenderLook == nullptr)
 	{
 		return;
 	}
@@ -116,21 +122,21 @@ void CProceduralContextLook::UpdateGameLookingRequest(const bool lookRequest)
 }
 
 
-void CProceduralContextLook::UpdateProcClipLookingRequest(const bool lookRequest)
-{
-	m_procClipRequestsLooking = lookRequest;
-}
-
-
 void CProceduralContextLook::UpdateGameLookTarget(const Vec3& lookTarget)
 {
 	m_gameLookTarget = lookTarget;
 }
 
 
+void CProceduralContextLook::UpdateProcClipLookingRequest(const bool lookRequest)
+{
+	m_procClipRequestsLooking = lookRequest;
+}
+
+
 void CProceduralContextLook::SetBlendInTime(const float blendInTime)
 {
-	if (m_pPoseBlenderLook == NULL)
+	if (m_pPoseBlenderLook == nullptr)
 	{
 		return;
 	}
@@ -141,7 +147,7 @@ void CProceduralContextLook::SetBlendInTime(const float blendInTime)
 
 void CProceduralContextLook::SetBlendOutTime(const float blendOutTime)
 {
-	if (m_pPoseBlenderLook == NULL)
+	if (m_pPoseBlenderLook == nullptr)
 	{
 		return;
 	}
@@ -152,7 +158,7 @@ void CProceduralContextLook::SetBlendOutTime(const float blendOutTime)
 
 void CProceduralContextLook::SetFovRadians(const float fovRadians)
 {
-	if (m_pPoseBlenderLook == NULL)
+	if (m_pPoseBlenderLook == nullptr)
 	{
 		return;
 	}

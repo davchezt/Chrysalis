@@ -7,7 +7,8 @@
 *   Run the fbxtool to remove the Mixamo namespace, and add the Root and RootProxy nodes e.g.
 
 ```
-.\bin\x64\Debug\fbxtool.exe -i human_male.fbx -o D:\Chrysalis\assets_source\objects\characters\human\male\human_male.fbx -v -j .\mixamo-to-autodesk.json -f
+.\bin\x64\Debug\fbxtool.exe -i human_male.fbx -o D:\Chrysalis\assets_source\objects\characters\human\male
+\human_male.fbx -v -j .\mixamo-to-autodesk.json -f
 ```
 
 

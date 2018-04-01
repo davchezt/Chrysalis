@@ -87,7 +87,7 @@ public:
 	\param	keepHistory true to keep history.
 	\param	setup	    The setup.
 	**/
-	virtual void PickUp(EntityId actorId, bool playSound, bool select = true, bool keepHistory = true, const char *setup = NULL);
+	virtual void PickUp(EntityId actorId, bool playSound, bool select = true, bool keepHistory = true, const char *setup = nullptr);
 
 
 	// ***

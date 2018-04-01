@@ -163,6 +163,9 @@ void CActorComponent::ProcessEvent(const SEntityEvent& event)
 void CActorComponent::Update(SEntityUpdateContext* pCtx)
 {
 	const float frameTime = pCtx->fFrameTime;
+
+	// HACK: This belongs in pre-physics...I think.
+	SetIK();
 }
 
 
@@ -482,10 +485,6 @@ void CActorComponent::OnResetState()
 			m_pAdvancedAnimationComponent->SetCharacterFile(m_geometryThirdPerson.value);
 		}
 
-		// HACK: quick way to get some debug info out. Need to filter it to only one entity to prevent overlays.
-		if (strcmp(GetEntity()->GetName(), "Hero") == 0)
-			m_pActionController->SetFlag(AC_DebugDraw, true);
-
 		// Queue the locomotion action, which switches fragments and tags as needed for actor locomotion.
 		auto locomotionAction = new CActorAnimationActionLocomotion();
 		QueueAction(*locomotionAction);
@@ -511,11 +510,42 @@ void CActorComponent::OnResetState()
 				&& CActorAnimationActionLooking::IsSupported(m_pActionController->GetContext()))
 			{
 				m_pProceduralContextLook = static_cast<CProceduralContextLook*>(m_pActionController->FindOrCreateProceduralContext(CProceduralContextLook::GetCID()));
+
+				if (m_pProceduralContextLook)
+				{
+					//m_pProceduralContextLook->SetCharacterSlotId(m_pAdvancedAnimationComponent->GetCharacter()->);
+				}
+
 				QueueAction(*new CActorAnimationActionLookPose());
 				QueueAction(*new CActorAnimationActionLooking());
 			}
 		}
 	}
+}
+
+
+void CActorComponent::SetIK()
+{
+	// TEST: If the actor is looking at something, let's apply the IK.
+	if (m_pAwareness && m_pAwareness->GetRayHit())
+	{
+		// TEST: Just look straight ahead.
+		SetLookingIK(true, m_pAwareness->GetRayHitPosition());
+	}
+}
+
+
+bool CActorComponent::SetLookingIK(const bool isLooking, const Vec3& lookTarget)
+{
+	const bool shouldHandle = (m_pProceduralContextLook != nullptr);
+
+	if (shouldHandle)
+	{
+		m_pProceduralContextLook->UpdateGameLookTarget(lookTarget);
+		m_pProceduralContextLook->UpdateGameLookingRequest(isLooking);
+	}
+
+	return shouldHandle;
 }
 
 

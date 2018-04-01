@@ -27,7 +27,7 @@
     <LEyeAttachment Name="LeftEye"/>
 
     <DirectionalBlends>
-      <Joint AnimToken="LookPoses" ParameterJoint="Bip01 Look" StartJoint="Bip01 Look" ReferenceJoint="Neck"/>
+      <Joint AnimToken="LookPoses" ParameterJoint="HeadIKLook" StartJoint="HeadIKLook" ReferenceJoint="Neck"/>
     </DirectionalBlends>
 
     <RotationList>

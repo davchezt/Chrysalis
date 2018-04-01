@@ -26,7 +26,7 @@ MANNEQUIN_USER_PARAMS(SMannequinAimingParams, AIMING_FRAGMENTS, AIMING_TAGS, AIM
 FragmentID CActorAnimationActionAiming::FindFragmentId(const SAnimationContext& context)
 {
 	const SMannequinAimingParams* pUserParams = GetMannequinUserParams<SMannequinAimingParams>(context);
-	CRY_ASSERT(pUserParams != NULL);
+	CRY_ASSERT(pUserParams != nullptr);
 
 	return pUserParams->fragmentIDs.Aiming;
 }

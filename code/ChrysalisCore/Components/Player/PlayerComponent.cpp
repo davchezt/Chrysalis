@@ -43,7 +43,7 @@ void CPlayerComponent::Initialize()
 	m_pCameraManager = pEntity->CreateComponent<CCameraManagerComponent>();
 
 	// Acquire a player input component. At a later time it will be useful to check if a network version is needed, or
-	// perhaps AI / NULL versions.
+	// perhaps AI / nullptr versions.
 	// NOTE: This component requires a pointer to a camera manager - so it must always load after that component.
 	m_pPlayerInput = pEntity->CreateComponent<CPlayerInputComponent>();
 }

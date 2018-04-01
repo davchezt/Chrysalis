@@ -28,8 +28,8 @@
    <Fragment BlendOutDuration="0.2" Tags="ScopeLookPose">
     <ProcLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.30000001"/>
-     <Procedural type="LookPose">
-      <ProceduralParams CryXmlVersion="2" Animation="" BlendTime="1" ScopeLayer="0"/>
+     <Procedural type="Looking">
+      <ProceduralParams CryXmlVersion="2"/>
      </Procedural>
     </ProcLayer>
    </Fragment>
@@ -50,8 +50,8 @@
    <Fragment BlendOutDuration="0.2" Tags="ScopeLookPose">
     <ProcLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.30000001"/>
-     <Procedural type="LookPose">
-      <ProceduralParams CryXmlVersion="2" Animation="" BlendTime="1" ScopeLayer="0"/>
+     <Procedural type="Looking">
+      <ProceduralParams CryXmlVersion="2"/>
      </Procedural>
     </ProcLayer>
    </Fragment>
@@ -68,6 +68,14 @@
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
      <Animation name="crouchwalk_l"/>
     </AnimLayer>
+   </Fragment>
+   <Fragment BlendOutDuration="0.2" Tags="ScopeLookPose">
+    <ProcLayer>
+     <Blend ExitTime="0" StartTime="0" Duration="0.30000001"/>
+     <Procedural type="Looking">
+      <ProceduralParams CryXmlVersion="2"/>
+     </Procedural>
+    </ProcLayer>
    </Fragment>
    <Fragment BlendOutDuration="0.2" Tags="">
     <AnimLayer>
@@ -89,6 +97,14 @@
      <Animation name="crouch_l_135"/>
     </AnimLayer>
    </Fragment>
+   <Fragment BlendOutDuration="0.2" Tags="ScopeLookPose">
+    <ProcLayer>
+     <Blend ExitTime="0" StartTime="0" Duration="0.30000001"/>
+     <Procedural type="Looking">
+      <ProceduralParams CryXmlVersion="2"/>
+     </Procedural>
+    </ProcLayer>
+   </Fragment>
    <Fragment BlendOutDuration="0.2" Tags="">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
@@ -96,19 +112,5 @@
     </AnimLayer>
    </Fragment>
   </Emote>
-  <Looking>
-   <Fragment BlendOutDuration="0.2" Tags=""/>
-  </Looking>
-  <LookPose>
-   <Fragment BlendOutDuration="0.2" Tags="ScopeLookPose">
-    <ProcLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.30000001"/>
-     <Procedural type="LookPose">
-      <ProceduralParams CryXmlVersion="2" Animation="" BlendTime="1" ScopeLayer="0"/>
-     </Procedural>
-    </ProcLayer>
-   </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags=""/>
-  </LookPose>
  </FragmentList>
 </AnimDB>

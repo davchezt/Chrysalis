@@ -1,12 +1,6 @@
 #pragma once
 
 #include <ICryMannequin.h>
-#include <CryAnimation/ICryAnimation.h>
-#include <CryAnimation/IAnimationPoseModifier.h>
-#include <CryExtension/CryCreateClassInstance.h>
-#include <CryExtension/ClassWeaver.h>
-#include <CryExtension/ICryFactoryRegistryImpl.h>
-#include <CryExtension/RegFactoryNode.h>
 #include "ProceduralContextHelpers.h"
 
 
@@ -27,9 +21,8 @@ public:
 	// ~IProceduralContext
 
 	void UpdateGameAimingRequest(const bool aimRequest);
-	void UpdateProcClipAimingRequest(const bool aimRequest);
-
 	void UpdateGameAimTarget(const Vec3& aimTarget);
+	void UpdateProcClipAimingRequest(const bool aimRequest);
 
 	void SetBlendInTime(const float blendInTime);
 	void SetBlendOutTime(const float blendOutTime);

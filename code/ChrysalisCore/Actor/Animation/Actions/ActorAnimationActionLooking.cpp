@@ -26,7 +26,7 @@ MANNEQUIN_USER_PARAMS(SMannequinLookingParams, LOOKING_FRAGMENTS, LOOKING_TAGS, 
 FragmentID CActorAnimationActionLooking::FindFragmentId(const SAnimationContext& context)
 {
 	const SMannequinLookingParams* pUserParams = GetMannequinUserParams<SMannequinLookingParams>(context);
-	CRY_ASSERT(pUserParams != NULL);
+	CRY_ASSERT(pUserParams != nullptr);
 
 	return pUserParams->fragmentIDs.Looking;
 }

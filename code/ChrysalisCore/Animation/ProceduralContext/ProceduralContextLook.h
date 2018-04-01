@@ -1,12 +1,6 @@
 #pragma once
 
 #include <ICryMannequin.h>
-#include <CryAnimation/ICryAnimation.h>
-#include <CryAnimation/IAnimationPoseModifier.h>
-#include <CryExtension/CryCreateClassInstance.h>
-#include <CryExtension/ClassWeaver.h>
-#include <CryExtension/ICryFactoryRegistryImpl.h>
-#include <CryExtension/RegFactoryNode.h>
 
 
 namespace Chrysalis
@@ -26,9 +20,8 @@ public:
 	// ~IProceduralContext
 
 	void UpdateGameLookingRequest(const bool lookRequest);
-	void UpdateProcClipLookingRequest(const bool lookRequest);
-
 	void UpdateGameLookTarget(const Vec3& lookTarget);
+	void UpdateProcClipLookingRequest(const bool lookRequest);
 
 	void SetBlendInTime(const float blendInTime);
 	void SetBlendOutTime(const float blendOutTime);

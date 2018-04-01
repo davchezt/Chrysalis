@@ -1,5 +1,7 @@
 #include "StdAfx.h"
+
 #include "ProceduralContextAim.h"
+#include "Actor/ActorComponent.h"
 
 
 namespace Chrysalis
@@ -8,7 +10,7 @@ CRYREGISTER_CLASS(CProceduralContextAim);
 
 
 CProceduralContextAim::CProceduralContextAim()
-	: m_pPoseBlenderAim(NULL)
+	: m_pPoseBlenderAim(nullptr)
 	, m_gameRequestsAiming(true)
 	, m_procClipRequestsAiming(false)
 	, m_gameAimTarget(0, 0, 0)
@@ -31,15 +33,18 @@ void CProceduralContextAim::InitialisePoseBlenderAim()
 {
 	CRY_ASSERT(m_entity);
 
-	const int slot = 0;
-	ICharacterInstance* pCharacterInstance = m_entity->GetCharacter(slot);
-	if (pCharacterInstance == NULL)
-	{
+	// HACK: Attempt to locate an actor component on the entity. If it exists we can get the character instance. This
+	// will fail for things that aren't actors, but it's a workaround for the old code which was hard coded to slot 0 -
+	// and was failing because of that. 
+	ICharacterInstance* pCharacterInstance = nullptr;
+	auto pActorComponent = m_entity->GetComponent<CActorComponent>();
+	if (pActorComponent)
+		pCharacterInstance = pActorComponent->GetCharacter();
+	else
 		return;
-	}
 
 	ISkeletonPose* pSkeletonPose = pCharacterInstance->GetISkeletonPose();
-	if (pSkeletonPose == NULL)
+	if (pSkeletonPose == nullptr)
 	{
 		return;
 	}
@@ -99,7 +104,7 @@ void CProceduralContextAim::InitialiseGameAimTarget()
 
 void CProceduralContextAim::Update(float timePassedSeconds)
 {
-	if (m_pPoseBlenderAim == NULL)
+	if (m_pPoseBlenderAim == nullptr)
 	{
 		return;
 	}
@@ -143,21 +148,21 @@ void CProceduralContextAim::UpdateGameAimingRequest(const bool aimRequest)
 }
 
 
-void CProceduralContextAim::UpdateProcClipAimingRequest(const bool aimRequest)
-{
-	m_procClipRequestsAiming = aimRequest;
-}
-
-
 void CProceduralContextAim::UpdateGameAimTarget(const Vec3& aimTarget)
 {
 	m_gameAimTarget = aimTarget;
 }
 
 
+void CProceduralContextAim::UpdateProcClipAimingRequest(const bool aimRequest)
+{
+	m_procClipRequestsAiming = aimRequest;
+}
+
+
 void CProceduralContextAim::SetBlendInTime(const float blendInTime)
 {
-	if (m_pPoseBlenderAim == NULL)
+	if (m_pPoseBlenderAim == nullptr)
 	{
 		return;
 	}
@@ -168,7 +173,7 @@ void CProceduralContextAim::SetBlendInTime(const float blendInTime)
 
 void CProceduralContextAim::SetBlendOutTime(const float blendOutTime)
 {
-	if (m_pPoseBlenderAim == NULL)
+	if (m_pPoseBlenderAim == nullptr)
 	{
 		return;
 	}

@@ -494,6 +494,11 @@ protected:
 	additionally by the editor when you both enter and leave game mode. */
 	virtual void OnResetState();
 
+	/** Set the IK bones, if applicable. */
+	void SetIK();
+
+	bool SetLookingIK(const bool isLooking, const Vec3& lookTarget);
+
 private:
 	/** An component which is used to discover entities near the actor. */
 	CEntityAwarenessComponent * m_pAwareness { nullptr };

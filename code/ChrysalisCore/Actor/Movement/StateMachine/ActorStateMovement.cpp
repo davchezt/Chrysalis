@@ -98,7 +98,7 @@ const CActorStateMovement::TStateIndex CActorStateMovement::Root(CActorControlle
 	switch (eventID)
 	{
 		case STATE_EVENT_INIT:
-			//m_pWaterEffects = NULL;
+			//m_pWaterEffects = nullptr;
 //			if (actorControllerComponent.IsClient())
 		{
 			CreateWaterEffects();
@@ -863,7 +863,7 @@ void CActorStateMovement::ProcessSprint(CActorControllerComponent& actorControll
 
 void CActorStateMovement::TriggerOutOfWaterEffectIfNeeded(const CActorControllerComponent& actorControllerComponent)
 {
-	/*if (m_pWaterEffects != NULL)
+	/*if (m_pWaterEffects != nullptr)
 	{
 	CRY_ASSERT (actorControllerComponent.IsClient ());
 
@@ -877,7 +877,7 @@ void CActorStateMovement::TriggerOutOfWaterEffectIfNeeded(const CActorController
 
 void CActorStateMovement::CreateWaterEffects()
 {
-	/*if (m_pWaterEffects == NULL)
+	/*if (m_pWaterEffects == nullptr)
 	{
 	m_pWaterEffects = new CWaterGameEffects ();
 	m_pWaterEffects->Initialise ();
@@ -887,11 +887,11 @@ void CActorStateMovement::CreateWaterEffects()
 
 void CActorStateMovement::ReleaseWaterEffects()
 {
-	/*if (m_pWaterEffects != NULL)
+	/*if (m_pWaterEffects != nullptr)
 	{
 	m_pWaterEffects->Release ();
 	delete m_pWaterEffects;
-	m_pWaterEffects = NULL;
+	m_pWaterEffects = nullptr;
 	}*/
 }
 }

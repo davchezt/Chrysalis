@@ -28,7 +28,7 @@ MANNEQUIN_USER_PARAMS(SMannequinLookPoseParams, LOOKPOSE_FRAGMENTS, LOOKPOSE_TAG
 FragmentID FindFragmentId(const SAnimationContext& context)
 {
 	const SMannequinLookPoseParams* pUserParams = GetMannequinUserParams<SMannequinLookPoseParams>(context);
-	CRY_ASSERT(pUserParams != NULL);
+	CRY_ASSERT(pUserParams != nullptr);
 
 	return pUserParams->fragmentIDs.LookPose;
 }

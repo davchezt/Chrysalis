@@ -10,7 +10,7 @@ SMannequinEmoteParams g_emoteMannequinParams;
 FragmentID CActorAnimationActionEmote::FindFragmentId(const SAnimationContext& context)
 {
 	const SMannequinEmoteParams* pUserParams = GetMannequinUserParams<SMannequinEmoteParams>(context);
-	CRY_ASSERT(pUserParams != NULL);
+	CRY_ASSERT(pUserParams != nullptr);
 
 	return pUserParams->fragmentIDs.Emote;
 }

@@ -113,6 +113,12 @@ add_sources("Animation_uber.cpp"
 		"Animation/Animation.cpp"
 		"Animation/Animation.h"
 )
+add_sources("ProceduralClip_uber.cpp"
+    PROJECTS Chrysalis
+    SOURCE_GROUP "Animation\\\\ProceduralClip"
+		"Animation/ProceduralClip/ProceduralClipAiming.cpp"
+		"Animation/ProceduralClip/ProceduralClipLooking.cpp"
+)
 add_sources("ProceduralContext_uber.cpp"
     PROJECTS Chrysalis
     SOURCE_GROUP "Animation\\\\ProceduralContext"

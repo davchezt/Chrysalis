@@ -28,7 +28,7 @@ MANNEQUIN_USER_PARAMS(SMannequinAimPoseParams, AIMPOSE_FRAGMENTS, AIMPOSE_TAGS, 
 FragmentID CActorAnimationActionAimPose::FindFragmentId(const SAnimationContext& context)
 {
 	const SMannequinAimPoseParams* pUserParams = GetMannequinUserParams<SMannequinAimPoseParams>(context);
-	CRY_ASSERT(pUserParams != NULL);
+	CRY_ASSERT(pUserParams != nullptr);
 
 	return pUserParams->fragmentIDs.AimPose;
 }

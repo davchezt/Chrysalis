@@ -24,7 +24,7 @@ CActorStateJump::CActorStateJump()
 	m_jumpLock(0.0f),
 	m_startFallingHeight(-FLT_MAX),
 	m_firstPrePhysicsUpdate(false),
-	m_jumpAction(NULL),
+	m_jumpAction(nullptr),
 	m_expectedJumpEndHeight(0.0f)
 {}
 
@@ -157,7 +157,7 @@ void CActorStateJump::StartJump(CActorControllerComponent& actorControllerCompon
 	//}
 
 	//IPhysicalEntity* pPhysEnt = actorControllerComponent.GetEntity ()->GetPhysics ();
-	//if (pPhysEnt != NULL)
+	//if (pPhysEnt != nullptr)
 	//{
 	//SAnimatedCharacterParams params = actorControllerComponent.m_pAnimatedCharacter->GetParams ();
 	//pe_player_dynamics pd;
@@ -212,11 +212,11 @@ void CActorStateJump::OnExit(CActorControllerComponent& actorControllerComponent
 		{
 		m_jumpAction->TriggerExit ();
 		m_jumpAction->Release ();
-		m_jumpAction = NULL;
+		m_jumpAction = nullptr;
 		}
 
 		IPhysicalEntity* pPhysEnt = actorControllerComponent.GetEntity ()->GetPhysics ();
-		if (pPhysEnt != NULL)
+		if (pPhysEnt != nullptr)
 		{
 		SAnimatedCharacterParams params = actorControllerComponent.m_pAnimatedCharacter->GetParams ();
 		pe_player_dynamics pd;
@@ -310,7 +310,7 @@ void CActorStateJump::Landed(CActorControllerComponent& actorControllerComponent
 	//			remoteControlled = true;
 	//		}
 	//	}
-	//	CRY_ASSERT_MESSAGE(actorControllerComponent.GetLinkedEntity() == NULL || remoteControlled, "Cannot 'land' when you're linked to another entity!");
+	//	CRY_ASSERT_MESSAGE(actorControllerComponent.GetLinkedEntity() == nullptr || remoteControlled, "Cannot 'land' when you're linked to another entity!");
 	//#endif
 
 		/*const SActorStats& stats = actorControllerComponent.m_actorState;
@@ -352,7 +352,7 @@ void CActorStateJump::Landed(CActorControllerComponent& actorControllerComponent
 		bool heavyLanded = false;
 
 		IItem* pCurrentItem = actorControllerComponent.GetCurrentItem ();
-		CWeapon* pCurrentWeapon = pCurrentItem ? static_cast<CWeapon*>(pCurrentItem->GetIWeapon ()) : NULL;
+		CWeapon* pCurrentWeapon = pCurrentItem ? static_cast<CWeapon*>(pCurrentItem->GetIWeapon ()) : nullptr;
 
 		if (fallSpeed > 0.0f && actorControllerComponent.IsCharacter ())
 		{
