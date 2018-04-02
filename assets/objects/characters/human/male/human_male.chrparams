@@ -15,38 +15,39 @@
       <IK Handle="RgtLeg01" Root="RightUpLeg" EndEffector="RightFoot" Solver="2BIK"/>
       <IK Handle="LftLeg01" Root="LeftUpLeg" EndEffector="LeftFoot" Solver="2BIK"/>
     </LimbIK_Definition>
+
+    <FeetLock_Definition>
+      <RIKHandle Handle="RgtLeg01"/>
+      <LIKHandle Handle="LftLeg01"/>
+    </FeetLock_Definition>
+
+    <LookIK_Definition>
+      <REyeAttachment Name="RightEye"/>
+      <LEyeAttachment Name="LeftEye"/>
+
+      <DirectionalBlends>
+        <Joint AnimToken="LookPoses" ParameterJoint="HeadIKLook" StartJoint="HeadIKLook" ReferenceJoint="Neck"/>
+      </DirectionalBlends>
+
+      <RotationList>
+        <Rotation Additive="1" Primary="1" JointName="Hips"/>
+        <Rotation Additive="1" Primary="1" JointName="Spine"/>
+        <Rotation Additive="1" Primary="1" JointName="Spine1"/>
+        <Rotation Additive="1" Primary="1" JointName="Spine2"/>
+        <Rotation Additive="1" Primary="1" JointName="Neck"/>
+        <Rotation Additive="0" Primary="1" JointName="Head"/>
+        <Rotation Additive="1" Primary="0" JointName="RightShoulder"/>
+        <Rotation Additive="1" Primary="0" JointName="RightArm"/>
+        <Rotation Additive="1" Primary="0" JointName="LeftShoulder"/>
+        <Rotation Additive="1" Primary="0" JointName="LeftArm"/>
+      </RotationList>
+
+      <PositionList>
+        <Position Additive="1" JointName="Hips"/>
+      </PositionList>
+      
+    </LookIK_Definition>
   </IK_Definition>
-
-  <FeetLock_Definition>
-    <RIKHandle Handle="RgtLeg01"/>
-    <LIKHandle Handle="LftLeg01"/>
-  </FeetLock_Definition>
-
-  <LookIK_Definition>
-    <REyeAttachment Name="RightEye"/>
-    <LEyeAttachment Name="LeftEye"/>
-
-    <DirectionalBlends>
-      <Joint AnimToken="LookPoses" ParameterJoint="HeadIKLook" StartJoint="HeadIKLook" ReferenceJoint="Neck"/>
-    </DirectionalBlends>
-
-    <RotationList>
-      <Rotation Additive="1" Primary="1" JointName="Hips"/>
-      <Rotation Additive="1" Primary="1" JointName="Spine"/>
-      <Rotation Additive="1" Primary="1" JointName="Spine1"/>
-      <Rotation Additive="1" Primary="1" JointName="Spine2"/>
-      <Rotation Additive="1" Primary="1" JointName="Neck"/>
-      <Rotation Additive="0" Primary="1" JointName="Head"/>
-      <Rotation Additive="1" Primary="0" JointName="RightShoulder"/>
-      <Rotation Additive="1" Primary="0" JointName="RightArm"/>
-      <Rotation Additive="1" Primary="0" JointName="LeftShoulder"/>
-      <Rotation Additive="1" Primary="0" JointName="LeftArm"/>
-    </RotationList>
-
-    <PositionList>
-      <Position Additive="1" JointName="Hips"/>
-    </PositionList>
-  </LookIK_Definition>
 
   <!-- *** Look into how these are implemented. Do they need skeleton support for the IK targets? -->
 
