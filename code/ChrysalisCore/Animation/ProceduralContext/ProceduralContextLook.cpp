@@ -79,7 +79,7 @@ void CProceduralContextLook::Update(float timePassedSeconds)
 			m_pPoseBlenderLook->SetTarget(m_gameLookTarget);
 
 #ifdef DEBUG
-			CryWatch("CProceduralContextLook Update");
+			CryWatch("Looking at %0.2f, %0.2f, %0.2f", m_gameLookTarget.x, m_gameLookTarget.y, m_gameLookTarget.z);
 #endif
 		}
 	}
