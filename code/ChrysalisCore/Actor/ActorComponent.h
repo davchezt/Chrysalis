@@ -497,6 +497,7 @@ protected:
 	/** Set the IK bones, if applicable. */
 	void SetIK();
 
+	/** Set the look IK on or off, giving it a target if it's being set on. **/
 	bool SetLookingIK(const bool isLooking, const Vec3& lookTarget);
 
 private:

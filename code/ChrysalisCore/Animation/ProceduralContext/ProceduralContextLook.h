@@ -11,7 +11,6 @@ class CProceduralContextLook
 public:
 	PROCEDURAL_CONTEXT(CProceduralContextLook, "ProceduralContextLook", "{6B360860-DCE8-4AD9-BA74-F9464671C4AD}"_cry_guid);
 
-	CProceduralContextLook();
 	virtual ~CProceduralContextLook() {}
 
 	// IProceduralContext
@@ -19,9 +18,9 @@ public:
 	virtual void Update(float timePassedSeconds) override;
 	// ~IProceduralContext
 
-	void UpdateGameLookingRequest(const bool lookRequest);
-	void UpdateGameLookTarget(const Vec3& lookTarget);
-	void UpdateProcClipLookingRequest(const bool lookRequest);
+	void SetIsLookingGame(const bool isLooking) { m_isLookingGame = isLooking; }
+	void SetIsLookingProcClip(const bool isLooking) { m_isLookingProcClip = isLooking; }
+	void SetLookTarget(const Vec3& lookTarget) { m_gameLookTarget = lookTarget; }
 
 	void SetBlendInTime(const float blendInTime);
 	void SetBlendOutTime(const float blendOutTime);
@@ -31,11 +30,9 @@ private:
 	void InitialisePoseBlenderLook();
 	void InitialiseGameLookTarget();
 
-private:
-	IAnimationPoseBlenderDir* m_pPoseBlenderLook;
-
-	bool m_gameRequestsLooking;
-	bool m_procClipRequestsLooking;
-	Vec3 m_gameLookTarget;
+	IAnimationPoseBlenderDir* m_pPoseBlenderLook { nullptr };
+	bool m_isLookingGame { true };
+	bool m_isLookingProcClip { false };
+	Vec3 m_gameLookTarget { ZERO };
 };
 }

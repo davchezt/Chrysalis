@@ -12,7 +12,6 @@ class CProceduralContextAim
 public:
 	PROCEDURAL_CONTEXT(CProceduralContextAim, "ProceduralContextAim", "{3ED38A0B-DECB-40E6-BF2E-B2D6380EDDEF}"_cry_guid);
 
-	CProceduralContextAim();
 	virtual ~CProceduralContextAim() {}
 
 	// IProceduralContext
@@ -20,9 +19,9 @@ public:
 	virtual void Update(float timePassedSeconds) override;
 	// ~IProceduralContext
 
-	void UpdateGameAimingRequest(const bool aimRequest);
-	void UpdateGameAimTarget(const Vec3& aimTarget);
-	void UpdateProcClipAimingRequest(const bool aimRequest);
+	void SetIsAimingGame(const bool isAiming) { m_isAimingGame = isAiming; }
+	void SetIsAimingProcClip(const bool isAiming) { m_isAimingProcClip = isAiming; }
+	void SetAimTarget(const Vec3& aimTarget) { m_aimTarget = aimTarget; }
 
 	void SetBlendInTime(const float blendInTime);
 	void SetBlendOutTime(const float blendOutTime);
@@ -31,20 +30,6 @@ public:
 	void CancelPolarCoordinatesSmoothingParameters(const uint32 requestId);
 
 private:
-	void InitialisePoseBlenderAim();
-	void InitialiseGameAimTarget();
-
-	void UpdatePolarCoordinatesSmoothingParameters();
-
-private:
-	IAnimationPoseBlenderDir* m_pPoseBlenderAim;
-
-	bool m_gameRequestsAiming;
-	bool m_procClipRequestsAiming;
-	Vec3 m_gameAimTarget;
-
-	Vec2 m_defaultPolarCoordinatesMaxSmoothRateRadiansPerSecond;
-	float m_defaultPolarCoordinatesSmoothTimeSeconds;
 	struct SPolarCoordinatesSmoothingParametersRequest
 	{
 		uint32 id;
@@ -52,7 +37,19 @@ private:
 		float smoothTimeSeconds;
 	};
 
-	typedef ProceduralContextHelpers::CRequestList< SPolarCoordinatesSmoothingParametersRequest > TPolarCoordinatesSmoothingParametersRequestList;
+	typedef ProceduralContextHelpers::CRequestList<SPolarCoordinatesSmoothingParametersRequest> TPolarCoordinatesSmoothingParametersRequestList;
 	TPolarCoordinatesSmoothingParametersRequestList m_polarCoordinatesSmoothingParametersRequestList;
+
+	void InitialisePoseBlenderAim();
+	void InitialiseGameAimTarget();
+	void UpdatePolarCoordinatesSmoothingParameters();
+
+	IAnimationPoseBlenderDir* m_pPoseBlenderAim { nullptr };
+	bool m_isAimingGame { true };
+	bool m_isAimingProcClip { false };
+	Vec3 m_aimTarget { ZERO };
+
+	Vec2 m_defaultPolarCoordinatesMaxSmoothRateRadiansPerSecond { DEG2RAD(360), DEG2RAD(360) };
+	float m_defaultPolarCoordinatesSmoothTimeSeconds { 0.1f };
 };
 }

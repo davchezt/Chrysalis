@@ -55,9 +55,11 @@ IAction::EStatus CActorAnimationActionLooking::Update(float timePassed)
 	// Update the fragments and tags if they are different.
 	const IScope& rootScope = GetRootScope();
 	if (rootScope.IsDifferent(m_fragmentID, m_fragTags))
-	{
 		SetFragment(m_fragmentID, m_fragTags);
-	}
+
+#ifdef DEBUG
+	CryWatch("CActorAnimationActionLooking Update");
+#endif
 
 	return m_eStatus;
 }
@@ -67,6 +69,7 @@ bool CActorAnimationActionLooking::IsSupported(const SAnimationContext& context)
 {
 	const FragmentID fragmentId = FindFragmentId(context);
 	const bool isSupported = (fragmentId != FRAGMENT_ID_INVALID);
+
 	return isSupported;
 }
 }

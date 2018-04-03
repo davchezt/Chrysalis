@@ -1,17 +1,27 @@
 <AnimDB FragDef="objects/characters/human/male/human_male_fragment_ids.xml" TagDef="objects/characters/human/male/human_male_tags.xml">
  <FragmentList>
   <Idle>
+   <Fragment BlendOutDuration="0.2" Tags="Alerted+ScopeLookPose">
+    <ProcLayer>
+     <Blend ExitTime="0" StartTime="0" Duration="0.30000001"/>
+     <Procedural type="Looking">
+      <ProceduralParams CryXmlVersion="2"/>
+     </Procedural>
+    </ProcLayer>
+   </Fragment>
    <Fragment BlendOutDuration="0.2" Tags="Unaware">
     <AnimLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
      <Animation name="stand_relaxed_idle" flags="Loop"/>
     </AnimLayer>
    </Fragment>
-   <Fragment BlendOutDuration="0.2" Tags="Alerted">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="stand_relaxed_idle" flags="Loop"/>
-    </AnimLayer>
+   <Fragment BlendOutDuration="0.2" Tags="Crouching+ScopeLookPose">
+    <ProcLayer>
+     <Blend ExitTime="0" StartTime="0" Duration="0.30000001"/>
+     <Procedural type="Looking">
+      <ProceduralParams CryXmlVersion="2"/>
+     </Procedural>
+    </ProcLayer>
    </Fragment>
    <Fragment BlendOutDuration="0.2" Tags="Crouching">
     <AnimLayer>
@@ -112,5 +122,31 @@
     </AnimLayer>
    </Fragment>
   </Emote>
+  <Looking>
+   <Fragment BlendOutDuration="0.2" Tags="ScopeLooking">
+    <ProcLayer>
+     <Blend ExitTime="0" StartTime="0" Duration="0.30000001"/>
+     <Procedural type="Looking">
+      <ProceduralParams CryXmlVersion="2"/>
+     </Procedural>
+    </ProcLayer>
+   </Fragment>
+   <Fragment BlendOutDuration="0.2" Tags=""/>
+  </Looking>
+  <LookPose>
+   <Fragment BlendOutDuration="0.2" Tags="ScopeLookPose">
+    <AnimLayer>
+     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
+     <Animation name="stand_relaxed_idle_v2"/>
+    </AnimLayer>
+    <ProcLayer>
+     <Blend ExitTime="0" StartTime="0" Duration="0.30000001"/>
+     <Procedural type="Looking">
+      <ProceduralParams CryXmlVersion="2"/>
+     </Procedural>
+    </ProcLayer>
+   </Fragment>
+   <Fragment BlendOutDuration="0.2" Tags=""/>
+  </LookPose>
  </FragmentList>
 </AnimDB>

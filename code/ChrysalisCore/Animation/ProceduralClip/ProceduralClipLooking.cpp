@@ -7,24 +7,28 @@
 namespace Chrysalis
 {
 
-class CProceduralClipLooking : public TProceduralContextualClip<CProceduralContextLook, SNoProceduralParams >
+class CProceduralClipLooking : public TProceduralContextualClip<CProceduralContextLook, SNoProceduralParams>
 {
 public:
 	virtual void OnEnter(float blendTime, float duration, const SNoProceduralParams& params)
 	{
 		m_context->SetBlendInTime(blendTime);
-		m_context->UpdateProcClipLookingRequest(true);
+		m_context->SetIsLookingProcClip(true);
 	}
 
 	virtual void OnExit(float blendTime)
 	{
 		m_context->SetBlendOutTime(blendTime);
-		m_context->UpdateProcClipLookingRequest(false);
+		m_context->SetIsLookingProcClip(false);
 	}
 
 	virtual void Update(float timePassed)
 	{
-		m_context->UpdateProcClipLookingRequest(true);
+		m_context->SetIsLookingProcClip(true);
+
+#ifdef DEBUG
+		CryWatch("CProceduralClipLooking Update");
+#endif
 	}
 };
 

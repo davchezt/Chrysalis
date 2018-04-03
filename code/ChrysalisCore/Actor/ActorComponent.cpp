@@ -511,11 +511,6 @@ void CActorComponent::OnResetState()
 			{
 				m_pProceduralContextLook = static_cast<CProceduralContextLook*>(m_pActionController->FindOrCreateProceduralContext(CProceduralContextLook::GetCID()));
 
-				if (m_pProceduralContextLook)
-				{
-					//m_pProceduralContextLook->SetCharacterSlotId(m_pAdvancedAnimationComponent->GetCharacter()->);
-				}
-
 				QueueAction(*new CActorAnimationActionLookPose());
 				QueueAction(*new CActorAnimationActionLooking());
 			}
@@ -532,6 +527,11 @@ void CActorComponent::SetIK()
 		// TEST: Just look straight ahead.
 		SetLookingIK(true, m_pAwareness->GetRayHitPosition());
 	}
+	else
+	{
+		// Don't allow look IK.
+		SetLookingIK(false, Vec3 { ZERO });
+	}
 }
 
 
@@ -541,8 +541,8 @@ bool CActorComponent::SetLookingIK(const bool isLooking, const Vec3& lookTarget)
 
 	if (shouldHandle)
 	{
-		m_pProceduralContextLook->UpdateGameLookTarget(lookTarget);
-		m_pProceduralContextLook->UpdateGameLookingRequest(isLooking);
+		m_pProceduralContextLook->SetLookTarget(lookTarget);
+		m_pProceduralContextLook->SetIsLookingGame(isLooking);
 	}
 
 	return shouldHandle;

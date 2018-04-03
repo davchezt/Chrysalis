@@ -36,6 +36,7 @@
         <Rotation Additive="1" Primary="1" JointName="Spine2"/>
         <Rotation Additive="1" Primary="1" JointName="Neck"/>
         <Rotation Additive="0" Primary="1" JointName="Head"/>
+        <Rotation Additive="0" Primary="1" JointName="HeadIKLook" />
         <Rotation Additive="1" Primary="0" JointName="RightShoulder"/>
         <Rotation Additive="1" Primary="0" JointName="RightArm"/>
         <Rotation Additive="1" Primary="0" JointName="LeftShoulder"/>
