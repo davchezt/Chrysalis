@@ -67,9 +67,13 @@ IAction::EStatus CActorAnimationActionLooking::Update(float timePassed)
 
 bool CActorAnimationActionLooking::IsSupported(const SAnimationContext& context)
 {
-	const FragmentID fragmentId = FindFragmentId(context);
-	const bool isSupported = (fragmentId != FRAGMENT_ID_INVALID);
+	// HACK: TODO: These tests need to come back in when they stop crashing the game.
 
-	return isSupported;
+	//const FragmentID fragmentId = FindFragmentId(context);
+	//const bool isSupported = (fragmentId != FRAGMENT_ID_INVALID);
+
+	//return isSupported;
+	
+	return true;
 }
 }

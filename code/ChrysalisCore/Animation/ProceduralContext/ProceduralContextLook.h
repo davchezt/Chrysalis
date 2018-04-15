@@ -9,9 +9,10 @@ class CProceduralContextLook
 	: public IProceduralContext
 {
 public:
-	PROCEDURAL_CONTEXT(CProceduralContextLook, "ProceduralContextLook", "{6B360860-DCE8-4AD9-BA74-F9464671C4AD}"_cry_guid);
+	PROCEDURAL_CONTEXT(CProceduralContextLook, "ProceduralContextLook", "{D6C9D628-EFCA-4D16-9E58-C9EB41EBBDE7}"_cry_guid);
 
-	virtual ~CProceduralContextLook() {}
+	CProceduralContextLook() { CryLogAlways("Construct CProceduralContextLook"); }
+	virtual ~CProceduralContextLook() { CryLogAlways("Destruct CProceduralContextLook"); }
 
 	// IProceduralContext
 	virtual void Initialise(IEntity& entity, IActionController& actionController) override;

@@ -10,7 +10,7 @@
    <Detail name="16BitPrecision">false</Detail>
   </Details>
   <Dependencies>
-   <Path>./security_pad.mtl</Path>
+   <Path usageCount="1">./security_pad.mtl</Path>
   </Dependencies>
  </AssetMetadata>
 </cryasset>

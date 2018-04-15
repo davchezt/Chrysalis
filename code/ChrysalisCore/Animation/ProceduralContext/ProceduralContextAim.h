@@ -10,7 +10,7 @@ class CProceduralContextAim
 	: public IProceduralContext
 {
 public:
-	PROCEDURAL_CONTEXT(CProceduralContextAim, "ProceduralContextAim", "{3ED38A0B-DECB-40E6-BF2E-B2D6380EDDEF}"_cry_guid);
+	PROCEDURAL_CONTEXT(CProceduralContextAim, "ProceduralContextAim", "{FE9E9111-015C-4349-A544-03D5CCD7B035}"_cry_guid);
 
 	virtual ~CProceduralContextAim() {}
 

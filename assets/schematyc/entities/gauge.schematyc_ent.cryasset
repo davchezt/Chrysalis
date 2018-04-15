@@ -1,5 +1,6 @@
-<AssetMetadata version="0" type="SchematycEntity" guid="2ce46bc4-a165-3ce9-090b-c86a8ff5dc20" source="">
+<AssetMetadata version="0" type="SchematycEntity" guid="2ce46bc4-a165-3ce9-090b-c86a8ff5dc20">
  <Files>
   <File path="gauge.schematyc_ent"/>
  </Files>
+ <Details />
 </AssetMetadata>

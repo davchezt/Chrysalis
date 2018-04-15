@@ -10,7 +10,7 @@
    <Detail name="16BitPrecision">false</Detail>
   </Details>
   <Dependencies>
-   <Path>./SlideVertical.mtl</Path>
+   <Path usageCount="1">./SlideVertical.mtl</Path>
   </Dependencies>
  </AssetMetadata>
 </cryasset>

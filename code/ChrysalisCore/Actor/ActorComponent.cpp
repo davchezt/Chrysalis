@@ -462,12 +462,17 @@ void CActorComponent::OnResetState()
 {
 	// HACK: the CAdvancedAnimation doesn't allow us access to the action controller. This is a workaround.
 	m_pActionController = gEnv->pGameFramework->GetMannequinInterface().FindActionController(*GetEntity());
-
+	
 	if (m_pActionController)
 	{
+		// HACK: This prevents a weird crash when getting the context a second time.
+		m_pProceduralContextLook = nullptr;
+
+		const auto& pContext = m_pActionController->GetContext();
+
 		// The mannequin tags for an actor will need to be loaded. Because these are found in the controller definition,
 		// they are potentially different for every actor. 
-		m_actorMannequinParams = GetMannequinUserParams<SActorMannequinParams>(m_pActionController->GetContext());
+		m_actorMannequinParams = GetMannequinUserParams<SActorMannequinParams>(pContext);
 
 		// We're going to clear all the mannequin state, and set it all up again.
 		m_pActionController->Reset();
@@ -493,12 +498,12 @@ void CActorComponent::OnResetState()
 		if (!IsViewFirstPerson())
 		{
 			//// Set the scope tag for look pose.
-			//SAnimationContext &animContext = m_pActionController->GetContext();
+			//SAnimationContext &animContext = pContext;
 			//animContext.state.Set(m_actorMannequinParams->tagIDs.ScopeLookPose, true);
 
 			//// Aim actions.
-			//if (CActorAnimationActionAimPose::IsSupported(m_pActionController->GetContext())
-			//	&& CActorAnimationActionAiming::IsSupported(m_pActionController->GetContext()))
+			//if (CActorAnimationActionAimPose::IsSupported(pContext)
+			//	&& CActorAnimationActionAiming::IsSupported(pContext))
 			//{
 			//	m_pProceduralContextAim = static_cast<CProceduralContextAim*>(m_pActionController->FindOrCreateProceduralContext(CProceduralContextAim::GetCID()));
 			//	QueueAction(*new CActorAnimationActionAimPose());
@@ -506,8 +511,8 @@ void CActorComponent::OnResetState()
 			//}
 
 			// Look actions.
-			if (CActorAnimationActionLookPose::IsSupported(m_pActionController->GetContext())
-				&& CActorAnimationActionLooking::IsSupported(m_pActionController->GetContext()))
+			if (CActorAnimationActionLookPose::IsSupported(pContext)
+				&& CActorAnimationActionLooking::IsSupported(pContext))
 			{
 				m_pProceduralContextLook = static_cast<CProceduralContextLook*>(m_pActionController->FindOrCreateProceduralContext(CProceduralContextLook::GetCID()));
 

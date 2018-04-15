@@ -10,7 +10,7 @@
    <Detail name="16BitPrecision">false</Detail>
   </Details>
   <Dependencies>
-   <Path>./book.mtl</Path>
+   <Path usageCount="1">./book.mtl</Path>
   </Dependencies>
  </AssetMetadata>
 </cryasset>

@@ -7,8 +7,8 @@
   <Detail name="textureCount">3</Detail>
  </Details>
  <Dependencies>
-  <Path>textures/terrain/grass/ground_grass_001_diff.dds</Path>
-  <Path>textures/terrain/grass/ground_grass_002_ddna.dds</Path>
-  <Path>textures/terrain/grass/ground_grass_002_height.dds</Path>
+  <Path usageCount="1">textures/terrain/grass/ground_grass_001_diff.dds</Path>
+  <Path usageCount="1">textures/terrain/grass/ground_grass_002_ddna.dds</Path>
+  <Path usageCount="1">textures/terrain/grass/ground_grass_002_height.dds</Path>
  </Dependencies>
 </AssetMetadata>

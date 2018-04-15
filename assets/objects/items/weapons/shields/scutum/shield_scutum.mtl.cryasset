@@ -7,8 +7,8 @@
   <Detail name="textureCount">3</Detail>
  </Details>
  <Dependencies>
-  <Path>./shield_scutum_diff.dds</Path>
-  <Path>./shield_scutum_ddna.dds</Path>
-  <Path>./shield_scutum_spec.dds</Path>
+  <Path usageCount="1">./shield_scutum_diff.dds</Path>
+  <Path usageCount="1">./shield_scutum_ddna.dds</Path>
+  <Path usageCount="1">./shield_scutum_spec.dds</Path>
  </Dependencies>
 </AssetMetadata>

@@ -9,6 +9,6 @@
   <Detail name="16BitPrecision">false</Detail>
  </Details>
  <Dependencies>
-  <Path>Objects/chrysalis/items/weapons/shields/scutum/shield_scutum.mtl</Path>
+  <Path usageCount="1">Objects/chrysalis/items/weapons/shields/scutum/shield_scutum.mtl</Path>
  </Dependencies>
 </AssetMetadata>

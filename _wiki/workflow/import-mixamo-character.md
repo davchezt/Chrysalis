@@ -8,9 +8,13 @@
 
 ```
 .\bin\x64\Debug\fbxtool.exe -i human_male.fbx -o D:\Chrysalis\assets_source\objects\characters\human\male
-\human_male.fbx -v -j .\mixamo-to-autodesk.json -f
+\human_male.fbx -v -j .\mixamo-to-autodesk.json -f -k
 ```
 
+For Lavizh
+
+.\bin\x64\Debug\fbxtool.exe -i aurora.fbx -o D:\Chrysalis\assets_source\objects\characters\human\aurora\a
+urora.fbx -v -j d:\fbxtool\mixamo-to-autodesk.json -f -k
 
 #From FBXTool into Maya
 

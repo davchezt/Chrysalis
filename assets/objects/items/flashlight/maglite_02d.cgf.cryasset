@@ -10,7 +10,7 @@
    <Detail name="16BitPrecision">false</Detail>
   </Details>
   <Dependencies>
-   <Path>./MultiMat_0.mtl</Path>
+   <Path usageCount="1">./MultiMat_0.mtl</Path>
   </Dependencies>
  </AssetMetadata>
 </cryasset>

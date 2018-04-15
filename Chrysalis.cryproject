@@ -49,7 +49,7 @@
 		{ "name": "ca_DrawAimIKVEGrid", "value": "1" },
 		{ "name": "drs_dialogSubtitles", "value": "1" },
 		{ "name": "ed_usedevmanager", "value": "0" },
-		{ "name": "component_awareness_debug", "value": "255" },
+		{ "name": "component_awareness_debug", "value": "0" },
 		{ "name": "gfx_uiaction_folder", "value": "assets/ui/default/uiactions" }
 	],
 	"console_commands": [ { "name": "map", "value": "test_all" } ]

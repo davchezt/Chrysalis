@@ -7,6 +7,6 @@
   <Detail name="textureCount">1</Detail>
  </Details>
  <Dependencies>
-  <Path>textures/defaults/16_grey.dds</Path>
+  <Path usageCount="1">textures/defaults/16_grey.dds</Path>
  </Dependencies>
 </AssetMetadata>

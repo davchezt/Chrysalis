@@ -10,7 +10,7 @@
    <Detail name="16BitPrecision">false</Detail>
   </Details>
   <Dependencies>
-   <Path>./Switch.mtl</Path>
+   <Path usageCount="1">./Switch.mtl</Path>
   </Dependencies>
  </AssetMetadata>
 </cryasset>
