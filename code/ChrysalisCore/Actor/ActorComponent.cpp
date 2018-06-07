@@ -511,10 +511,13 @@ void CActorComponent::OnResetState()
 			//}
 
 			// Look actions.
-			if (CActorAnimationActionLookPose::IsSupported(pContext)
-				&& CActorAnimationActionLooking::IsSupported(pContext))
+			//if (CActorAnimationActionLookPose::IsSupported(pContext) // HACK: These tests are causing crashes on the second run through.
+				//&& CActorAnimationActionLooking::IsSupported(pContext))
 			{
-				m_pProceduralContextLook = static_cast<CProceduralContextLook*>(m_pActionController->FindOrCreateProceduralContext(CProceduralContextLook::GetCID()));
+//				m_pProceduralContextLook = static_cast<CProceduralContextLook*>(m_pActionController->FindOrCreateProceduralContext(CProceduralContextLook::GetCID()));
+				
+				auto pX = m_pActionController->FindOrCreateProceduralContext(CProceduralContextLook::GetCID());
+				m_pProceduralContextLook = static_cast<CProceduralContextLook*>(pX);
 
 				QueueAction(*new CActorAnimationActionLookPose());
 				QueueAction(*new CActorAnimationActionLooking());

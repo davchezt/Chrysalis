@@ -36,10 +36,6 @@
     </AnimLayer>
    </Fragment>
    <Fragment BlendOutDuration="0.2" Tags="ScopeLookPose">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.29999995"/>
-     <Animation name="LookPoses" flags="Loop"/>
-    </AnimLayer>
     <ProcLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.30000001"/>
      <Procedural type="Looking">
@@ -139,10 +135,6 @@
   </Looking>
   <LookPose>
    <Fragment BlendOutDuration="0.2" Tags="ScopeLookPose">
-    <AnimLayer>
-     <Blend ExitTime="0" StartTime="0" Duration="0.2"/>
-     <Animation name="stand_relaxed_idle_v2"/>
-    </AnimLayer>
     <ProcLayer>
      <Blend ExitTime="0" StartTime="0" Duration="0.30000001"/>
      <Procedural type="Looking">

@@ -411,8 +411,7 @@ CChrysalisCorePlugin* CChrysalisCorePlugin::Get()
 	if (!plugIn)
 		plugIn = gEnv->pSystem->GetIPluginManager()->QueryPlugin<CChrysalisCorePlugin>();
 
-	if (!plugIn)
-		CRY_ASSERT_MESSAGE(plugIn, "Chrysalis Core plugin was not found.");
+	CRY_ASSERT_MESSAGE(plugIn, "Chrysalis Core plugin was not found.");
 
 	return plugIn;
 }
