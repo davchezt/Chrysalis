@@ -22,7 +22,7 @@ protected:
 
 	// IEntityComponent
 	void Initialize() override;
-	uint64 GetEventMask() const override { return ENTITY_EVENT_BIT(ENTITY_EVENT_UPDATE); }
+	Cry::Entity::EventFlags GetEventMask() const override { return ENTITY_EVENT_BIT(ENTITY_EVENT_UPDATE); }
 	void ProcessEvent(const SEntityEvent& event) override;
 	// ~IEntityComponent
 

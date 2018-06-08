@@ -82,11 +82,11 @@ void CItemComponent::EnablePicking(bool enable, bool dropped)
 		m_itemStatus.dropped = true;
 		m_itemStatus.pickable = true;
 
-		if (dropped)
-		{
-			GetEntity()->KillTimer(eIT_Flying);
-			GetEntity()->SetTimer(eIT_Flying, 750);
-		}
+		//if (dropped)
+		//{
+		//	GetEntity()->KillTimer(eIT_Flying);
+		//	GetEntity()->SetTimer(eIT_Flying, 750);
+		//}
 
 		//if (GetEntity()->IsSlotValid(eIGS_Aux0))
 		//{

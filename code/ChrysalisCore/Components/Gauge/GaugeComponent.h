@@ -20,8 +20,12 @@ protected:
 	// IEntityComponent
 	void Initialize() override;
 	void ProcessEvent(const SEntityEvent& event) override;
-	uint64 GetEventMask() const { return Cry::DefaultComponents::CBaseMeshComponent::GetEventMask() | ENTITY_EVENT_BIT(ENTITY_EVENT_UPDATE); }
+	Cry::Entity::EventFlags GetEventMask() const override { return Cry::DefaultComponents::CBaseMeshComponent::GetEventMask() | Cry::Entity::EEvent::Update; }
 	// ~IEntityComponent
+
+	// IEditorEntityComponent
+	virtual bool SetMaterial(int slotId, const char* szMaterial) override;
+	// ~IEditorEntityComponent
 
 public:
 	CGaugeComponent() {}
@@ -64,6 +68,7 @@ public:
 
 protected:
 	Schematyc::CharacterFileName m_filePath;
+	Schematyc::MaterialFileName m_materialPath;
 	_smart_ptr<ICharacterInstance> m_pCachedCharacter = nullptr;
 	SGaugeProperties m_gaugeProperties;
 };
