@@ -123,24 +123,24 @@ void CGaugeComponent::Update(SEntityUpdateContext* pCtx)
 }
 
 
-bool CGaugeComponent::SetMaterial(int slotId, const char* szMaterial)
-{
-	if (slotId == GetEntitySlotId())
-	{
-		if (IMaterial* pMaterial = gEnv->p3DEngine->GetMaterialManager()->LoadMaterial(szMaterial, false))
-		{
-			m_materialPath = szMaterial;
-			m_pEntity->SetSlotMaterial(GetEntitySlotId(), pMaterial);
-		}
-		else if (szMaterial [0] == '\0')
-		{
-			m_materialPath.value.clear();
-			m_pEntity->SetSlotMaterial(GetEntitySlotId(), nullptr);
-		}
-
-		return true;
-	}
-
-	return false;
-}
+//bool CGaugeComponent::SetMaterial(int slotId, const char* szMaterial)
+//{
+//	if (slotId == GetEntitySlotId())
+//	{
+//		if (IMaterial* pMaterial = gEnv->p3DEngine->GetMaterialManager()->LoadMaterial(szMaterial, false))
+//		{
+//			m_materialPath = szMaterial;
+//			m_pEntity->SetSlotMaterial(GetEntitySlotId(), pMaterial);
+//		}
+//		else if (szMaterial [0] == '\0')
+//		{
+//			m_materialPath.value.clear();
+//			m_pEntity->SetSlotMaterial(GetEntitySlotId(), nullptr);
+//		}
+//
+//		return true;
+//	}
+//
+//	return false;
+//}
 }

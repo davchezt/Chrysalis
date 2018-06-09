@@ -324,7 +324,7 @@ void CActionRPGCameraComponent::AttachToEntity(EntityId entityId)
 
 void CActionRPGCameraComponent::OnActivate()
 {
-	m_EventMask.Add(Cry::Entity::EEvent::Update);
+	m_EventMask |= EventToMask(ENTITY_EVENT_UPDATE);
 	GetEntity()->UpdateComponentEventMask(this);
 	ResetCamera();
 
@@ -335,7 +335,7 @@ void CActionRPGCameraComponent::OnActivate()
 
 void CActionRPGCameraComponent::OnDeactivate()
 {
-	m_EventMask.Remove(Cry::Entity::EEvent::Update);
+	m_EventMask &= ~EventToMask(ENTITY_EVENT_UPDATE);
 	GetEntity()->UpdateComponentEventMask(this);
 }
 

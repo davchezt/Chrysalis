@@ -20,11 +20,11 @@ protected:
 	// IEntityComponent
 	void Initialize() override;
 	void ProcessEvent(const SEntityEvent& event) override;
-	Cry::Entity::EventFlags GetEventMask() const override { return Cry::DefaultComponents::CBaseMeshComponent::GetEventMask() | Cry::Entity::EEvent::Update; }
+	Cry::Entity::EntityEventMask GetEventMask() const override { return Cry::DefaultComponents::CBaseMeshComponent::GetEventMask() | EntityEventMask(ENTITY_EVENT_UPDATE); }
 	// ~IEntityComponent
 
 	// IEditorEntityComponent
-	virtual bool SetMaterial(int slotId, const char* szMaterial) override;
+	//virtual bool SetMaterial(int slotId, const char* szMaterial) override;
 	// ~IEditorEntityComponent
 
 public:

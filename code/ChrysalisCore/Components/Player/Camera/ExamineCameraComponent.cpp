@@ -114,7 +114,7 @@ void CExamineCameraComponent::AttachToEntity(EntityId entityId)
 
 void CExamineCameraComponent::OnActivate()
 {
-	m_EventMask.Add(Cry::Entity::EEvent::Update);
+	m_EventMask |= EventToMask(ENTITY_EVENT_UPDATE);
 	GetEntity()->UpdateComponentEventMask(this);
 	ResetCamera();
 
@@ -132,7 +132,7 @@ void CExamineCameraComponent::OnActivate()
 
 void CExamineCameraComponent::OnDeactivate()
 {
-	m_EventMask.Remove(Cry::Entity::EEvent::Update);
+	m_EventMask &= ~EventToMask(ENTITY_EVENT_UPDATE);
 	GetEntity()->UpdateComponentEventMask(this);
 }
 

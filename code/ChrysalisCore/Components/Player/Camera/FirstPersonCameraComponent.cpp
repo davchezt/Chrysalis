@@ -107,7 +107,7 @@ void CFirstPersonCameraComponent::Update()
 
 void CFirstPersonCameraComponent::OnActivate()
 {
-	m_EventMask.Add(Cry::Entity::EEvent::Update);
+	m_EventMask |= EventToMask(ENTITY_EVENT_UPDATE);
 	GetEntity()->UpdateComponentEventMask(this);
 	ResetCamera();
 }
@@ -115,7 +115,7 @@ void CFirstPersonCameraComponent::OnActivate()
 
 void CFirstPersonCameraComponent::OnDeactivate()
 {
-	m_EventMask.Remove(Cry::Entity::EEvent::Update);
+	m_EventMask &= ~EventToMask(ENTITY_EVENT_UPDATE);
 	GetEntity()->UpdateComponentEventMask(this);
 }
 

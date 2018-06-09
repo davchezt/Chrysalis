@@ -35,7 +35,7 @@ protected:
 	// IEntityComponent
 	void Initialize() override;
 	virtual void ProcessEvent(const SEntityEvent& event) override;
-	Cry::Entity::EventFlags GetEventMask() const override { return ENTITY_EVENT_BIT(ENTITY_EVENT_START_GAME) | ENTITY_EVENT_BIT(ENTITY_EVENT_UPDATE); }
+	Cry::Entity::EntityEventMask GetEventMask() const override { return EntityEventMask(ENTITY_EVENT_START_GAME) | EntityEventMask(ENTITY_EVENT_UPDATE); }
 	// ~IEntityComponent
 
 public:

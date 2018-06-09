@@ -64,7 +64,7 @@
    <Object Type="EnvironmentProbe" Layer="Main" LayerGUID="374a523a-e30d-4fff-b284-10fcbf81d9a7" Id="3e966bc9-65ed-15cb-1906-2c579cc4c9fe" Name="EnvironmentProbe-1" Pos="65.486526,62.54652,34.985748" Rotate="0.99999177,0,0,0" ColorRGB="65535" cubemap_resolution="256" preview_cubemap="0" OutdoorOnly="0" GIMode="0" ViewDistRatio="100" HiddenInGame="0" EntityClass="EnvironmentLight" HasEntity="1">
     <Properties />
     <Components>
-     <Component typeId="0d3d1840-d239-411e-8738-14c56cccee2c" guid="ee419748-e570-f52e-0402-86d0415b4275" CryXmlVersion="2" Active="true" IgnoreVisAreas="false" SortPriority="0" AttentuationFalloffMax="1" VolumetricFogOnly="false" AffectsVolumetricFog="true" AffectsOnlyThisArea="true" LinkToSkyColor="false" DiffuseMultiplier="1" SpecularMultiplier="1" ProjectionActive="false" ProjectionHeight="1" ProjectionLength="1" ProjectionWidth="1" Cubemap="">
+     <Component typeId="0d3d1840-d239-411e-8738-14c56cccee2c" guid="ef8a9af0-892f-aae3-e6df-6d8cd2f961ce" CryXmlVersion="2" Active="true" IgnoreVisAreas="false" SortPriority="0" AttentuationFalloffMax="1" VolumetricFogOnly="false" AffectsVolumetricFog="true" AffectsOnlyThisArea="true" LinkToSkyColor="false" DiffuseMultiplier="1" SpecularMultiplier="1" ProjectionActive="false" ProjectionHeight="1" ProjectionLength="1" ProjectionWidth="1" Cubemap="">
       <BoxSize x="128" y="128" z="128"/>
       <Color r="1" g="1" b="1" a="1"/>
      </Component>
@@ -228,9 +228,9 @@
         <element element="1"/>
        </scale>
       </Transform>
-      <properties Type="RenderAndCollider" Character="objects/characters/human/male/human_male.cdf" DatabasePath="objects/characters/human/male/human_male.adb" ControllerDefPath="objects/characters/human/male/human_male_controller_defs.xml" DefaultScope="Char3P" DefaultFragment="Idle" AnimDriven="false" GroundAlign="true">
+      <properties Type="RenderAndCollider" Character="objects/characters/human/male/human_male.cdf" DatabasePath="objects/characters/human/male/human_male.adb" ControllerDefPath="objects/characters/human/male/human_male_controller_defs.xml" DefaultScope="Char1P" DefaultFragment="Idle" AnimDriven="false" GroundAlign="true">
        <Render ShadowSpec="Low" IgnoreVisArea="false" ViewDistRatio="100" LODDistance="100" GIMode="None"/>
-       <Physics Mass="78" Density="0"/>
+       <Physics WeightType="EWeightType::Mass" Density="0" Mass="78"/>
       </properties>
      </Component>
      <Component CryXmlVersion="2" TypeGUID="9a65029f-3d2d-4754-9a7a-c9aaaed49c3d" TypeName="Chrysalis::CCharacterAttributesComponent" GUID="9218a0d4-98ba-f67e-bb8b-3a58a863c337" Name="" UserAdded="false">

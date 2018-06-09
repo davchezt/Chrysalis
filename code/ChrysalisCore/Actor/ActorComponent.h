@@ -367,7 +367,7 @@ protected:
 	// IEntityComponent
 	void Initialize() override;
 	void ProcessEvent(const SEntityEvent& event) override;
-	Cry::Entity::EventFlags GetEventMask() const override { return ENTITY_EVENT_BIT(ENTITY_EVENT_UPDATE) | ENTITY_EVENT_BIT(ENTITY_EVENT_PREPHYSICSUPDATE); }
+	Cry::Entity::EntityEventMask GetEventMask() const override { return EntityEventMask(ENTITY_EVENT_UPDATE) | EntityEventMask(ENTITY_EVENT_PREPHYSICSUPDATE); }
 	// ~IEntityComponent
 
 	virtual void Update(SEntityUpdateContext* pCtx);
@@ -595,7 +595,7 @@ private:
 	// ***
 
 public:
-	void QueueAction(TAction<SAnimationContext>& pAction) override { m_pAdvancedAnimationComponent->QueueAction(pAction); };
+	void QueueAction(TAction<SAnimationContext>& pAction) override { m_pAdvancedAnimationComponent->QueueCustomFragment(pAction); };
 
 	virtual IActionController* GetActionController() const;
 
