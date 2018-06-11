@@ -38,7 +38,7 @@ void CFirstPersonCameraComponent::ProcessEvent(const SEntityEvent& event)
 {
 	switch (event.event)
 	{
-		case ENTITY_EVENT_UPDATE:
+		case EEntityEvent::Update:
 			Update();
 			UpdateView();
 			break;
@@ -107,7 +107,7 @@ void CFirstPersonCameraComponent::Update()
 
 void CFirstPersonCameraComponent::OnActivate()
 {
-	m_EventMask |= EventToMask(ENTITY_EVENT_UPDATE);
+	m_EventMask |= EventToMask(EEntityEvent::Update);
 	GetEntity()->UpdateComponentEventMask(this);
 	ResetCamera();
 }
@@ -115,7 +115,7 @@ void CFirstPersonCameraComponent::OnActivate()
 
 void CFirstPersonCameraComponent::OnDeactivate()
 {
-	m_EventMask &= ~EventToMask(ENTITY_EVENT_UPDATE);
+	m_EventMask &= ~EventToMask(EEntityEvent::Update);
 	GetEntity()->UpdateComponentEventMask(this);
 }
 

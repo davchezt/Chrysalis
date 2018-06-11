@@ -43,7 +43,7 @@ void CPetComponent::ProcessEvent(const SEntityEvent& event)
 			OnResetState();
 			break;
 
-		case ENTITY_EVENT_UPDATE:
+		case EEntityEvent::Update:
 			break;
 	}
 }

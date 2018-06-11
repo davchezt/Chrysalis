@@ -43,7 +43,7 @@ void CActionRPGCameraComponent::ProcessEvent(const SEntityEvent& event)
 {
 	switch (event.event)
 	{
-		case ENTITY_EVENT_UPDATE:
+		case EEntityEvent::Update:
 			Update();
 			UpdateView();
 			break;
@@ -123,6 +123,7 @@ void CActionRPGCameraComponent::UpdateFirstPerson()
 			{
 				m_viewPitch -= pPlayerInput->GetMousePitchDelta() - pPlayerInput->GetXiPitchDelta();
 				m_viewPitch = clamp_tpl(m_viewPitch, DEG2RAD(g_cvars.m_firstPersonCameraPitchMin), DEG2RAD(g_cvars.m_firstPersonCameraPitchMax));
+				CryWatch("m_viewPitch: %d", m_viewPitch);
 			}
 
 			// Pose is based on entity position and the eye position.
@@ -324,7 +325,7 @@ void CActionRPGCameraComponent::AttachToEntity(EntityId entityId)
 
 void CActionRPGCameraComponent::OnActivate()
 {
-	m_EventMask |= EventToMask(ENTITY_EVENT_UPDATE);
+	m_EventMask |= EventToMask(EEntityEvent::Update);
 	GetEntity()->UpdateComponentEventMask(this);
 	ResetCamera();
 
@@ -335,7 +336,7 @@ void CActionRPGCameraComponent::OnActivate()
 
 void CActionRPGCameraComponent::OnDeactivate()
 {
-	m_EventMask &= ~EventToMask(ENTITY_EVENT_UPDATE);
+	m_EventMask &= ~EventToMask(EEntityEvent::Update);
 	GetEntity()->UpdateComponentEventMask(this);
 }
 

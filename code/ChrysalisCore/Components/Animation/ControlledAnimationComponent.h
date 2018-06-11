@@ -18,7 +18,7 @@ protected:
 	// IEntityComponent
 	virtual void Initialize() final;
 	void ProcessEvent(const SEntityEvent& event) override;
-	Cry::Entity::EntityEventMask GetEventMask() const override { return Cry::DefaultComponents::CBaseMeshComponent::GetEventMask() | EntityEventMask(ENTITY_EVENT_UPDATE); }
+	Cry::Entity::EntityEventMask GetEventMask() const override { return Cry::DefaultComponents::CBaseMeshComponent::GetEventMask() | EntityEventMask(EEntityEvent::Update); }
 	// ~IEntityComponent
 
 	// IEditorEntityComponent

@@ -53,14 +53,14 @@ void CPlayerComponent::ProcessEvent(const SEntityEvent& event)
 {
 	switch (event.event)
 	{
-		case ENTITY_EVENT_START_GAME:
+		case EEntityEvent::GameplayStarted:
 		{
 			// Revive the entity when gameplay starts
 			OnRevive();
 		}
 		break;
 
-		case ENTITY_EVENT_UPDATE:
+		case EEntityEvent::Update:
 		{
 			SEntityUpdateContext* pCtx = (SEntityUpdateContext*)event.nParam [0];
 		}
