@@ -300,18 +300,24 @@ void CActorControllerComponent::UpdateMovementRequest(float frameTime)
 	// If there's a player controlling us, we can query them for inputs and camera and apply that to our movement.
 	if (auto* pPlayer = m_pActorComponent->GetPlayer())
 	{
+		/**
+		The request needs to take into account both the direction of the camera and the direction of
+		the movement i.e. left is alway left relative to the camera. TODO: What will it take to make this
+		use AddVelocity instead? The values don't seem to match with what I'd expect to input to it.
+		**/
 		auto* pPlayerInput = pPlayer->GetPlayerInput();
-
-		// The request needs to take into account both the direction of the camera and the direction of the movement i.e.
-		// left is alway left relative to the camera.
-		// TODO: What will it take to make this use AddVelocity instead? The values don't seem to match with what I'd
-		// expect to input to it. 
 		float moveSpeed = GetMovementBaseSpeed(pPlayerInput->GetMovementDirectionFlags());
-		if (moveSpeed > FLT_EPSILON)
+		if ((moveSpeed > FLT_EPSILON) && (pPlayerInput->IsMovementRequested()))
 		{
 			m_movingDuration += frameTime;
 			m_movementRequest = pPlayerInput->GetMovement(pPlayer->GetCamera()->GetRotation()) * moveSpeed;
 			SetVelocity(m_movementRequest);
+		}
+		else
+		{
+			// I'm forcing the velocity to zero if we're not actively controlling the character. This naive
+			// approach is probably wrong, but it works for now. 
+			SetVelocity(ZERO);
 		}
 	}
 }

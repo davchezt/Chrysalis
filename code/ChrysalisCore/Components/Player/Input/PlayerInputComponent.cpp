@@ -295,20 +295,20 @@ void CPlayerInputComponent::HandleInputFlagChange(TInputFlags flags, int activat
 	{
 		case EInputFlagType::Hold:
 		{
-			if (activationMode == eIS_Released)
-			{
-				m_inputFlags &= ~flags;
-			}
-			else
+			if (activationMode & eIS_Pressed)
 			{
 				m_inputFlags |= flags;
+			}
+			else if (activationMode & eIS_Released)
+			{
+				m_inputFlags &= ~flags;
 			}
 		}
 		break;
 
 		case EInputFlagType::Toggle:
 		{
-			if (activationMode == eIS_Released)
+			if (activationMode & eIS_Released)
 			{
 				// Toggle the bit(s)
 				m_inputFlags ^= flags;

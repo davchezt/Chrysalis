@@ -60,6 +60,16 @@ public:
 
 
 	/**
+	Determine if the player has requested any movement for this frame.
+
+	\return True if movement requested, false if not.
+	**/
+	bool IsMovementRequested() const {
+		return m_inputFlags != 0; 
+	}
+
+
+	/**
 	Given the current input state, calculate a vector that represents the direction the player wishes their character
 	to move. The vector is normalised. Movement will only be affected along the X and Y axis, since we are not presently
 	processing Z input (up). This should be sufficient for most RPG style games.

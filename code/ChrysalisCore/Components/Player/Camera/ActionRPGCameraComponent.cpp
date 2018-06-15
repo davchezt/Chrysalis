@@ -123,7 +123,6 @@ void CActionRPGCameraComponent::UpdateFirstPerson()
 			{
 				m_viewPitch -= pPlayerInput->GetMousePitchDelta() - pPlayerInput->GetXiPitchDelta();
 				m_viewPitch = clamp_tpl(m_viewPitch, DEG2RAD(g_cvars.m_firstPersonCameraPitchMin), DEG2RAD(g_cvars.m_firstPersonCameraPitchMax));
-				CryWatch("m_viewPitch: %d", m_viewPitch);
 			}
 
 			// Pose is based on entity position and the eye position.
