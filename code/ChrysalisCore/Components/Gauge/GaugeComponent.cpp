@@ -56,7 +56,7 @@ void CGaugeComponent::ProcessEvent(const SEntityEvent& event)
 {
 	switch (event.event)
 	{
-		case ENTITY_EVENT_EDITOR_PROPERTY_CHANGED:
+		case EEntityEvent::EditorPropertyChanged:
 		{
 			m_pEntity->UpdateComponentEventMask(this);
 			LoadFromDisk();
