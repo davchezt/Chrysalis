@@ -52,7 +52,7 @@
    </element>
    <element elementType="Base" guid="15e5d100-9c6a-444a-a9cb-d183affcd517" name="Base [Entity]">
     <classId domain="Env" guid="be845278-0dd2-409f-b8be-97895607c256"/>
-    <envClassProperties icon="%EDITOR%/objecticons/schematyc.bmp" bHideInEditor="false" bTriggerAreas="false"/>
+    <envClassProperties icon="%EDITOR%/objecticons/schematyc.bmp" bHideInEditor="false" bTriggerAreas="false" bCreatePerClient="false"/>
     <extensions />
     <children>
      <element elementType="ComponentInstance" guid="316b8c7b-a273-4085-bf28-07b53a08c181" name="Entity" accessor="Private" typeGUID="e88093df-904f-4c52-af38-911e26777cdc">
@@ -63,18 +63,24 @@
     </children>
    </element>
    <element elementType="ComponentInstance" guid="4f54dede-461f-49b6-b8e3-edf9da2861d8" name="Mesh" accessor="Public" typeGUID="6ddd0033-6aaa-4b71-b8ea-108258205e29">
-    <transform x="1" y="1" z="1">
+    <transform>
      <translation>
-      <element element="0"/>
-      <element element="0"/>
-      <element element="0"/>
+      <position>
+       <element element="0"/>
+       <element element="0"/>
+       <element element="0"/>
+      </position>
      </translation>
-     <rotation x="0" y="0" z="0"/>
-     <scale />
+     <rotation x="0" y="-0" z="0"/>
+     <scale>
+      <element element="1"/>
+      <element element="1"/>
+      <element element="1"/>
+     </scale>
     </transform>
     <properties Type="RenderAndCollider" FilePath="objects/items/flashlight/maglite_02d.cgf" Material="objects/items/flashlight/maglite_02d.mtl">
      <Render ShadowSpec="Low" IgnoreVisArea="false" ViewDistRatio="100" LODDistance="100" GIMode="None"/>
-     <Physics Mass="1.2" Density="0"/>
+     <Physics WeightType="EWeightType::Mass" Density="0" Mass="1.2"/>
     </properties>
     <extensions />
     <children />
@@ -532,22 +538,29 @@
     </children>
    </element>
    <element elementType="ComponentInstance" guid="0fa1c563-6712-4048-8ca3-3398ab608810" name="Projector Light" accessor="Public" typeGUID="07d0cad1-8e79-4177-9add-a2464a009fa5">
-    <transform x="1" y="1" z="1">
+    <transform>
      <translation>
-      <element element="0"/>
-      <element element="0.25"/>
-      <element element="0"/>
+      <position>
+       <element element="0"/>
+       <element element="0"/>
+       <element element="0"/>
+      </position>
      </translation>
-     <rotation x="0" y="0" z="0"/>
-     <scale />
+     <rotation x="0" y="-0" z="0"/>
+     <scale>
+      <element element="1"/>
+      <element element="1"/>
+      <element element="1"/>
+     </scale>
     </transform>
     <properties Active="true" Radius="10" Angle="0.34906584">
      <ProjectorOptions NearPlane="0.1" Texture="textures/lights/flashlight_projector.dds" Material=""/>
+     <Optics Enable="true" LensFlare="" AttachtToSun="false" FlareFOV="360"/>
      <Color DiffMult="5" SpecMult="1">
       <Color r="1" g="1" b="1" a="1"/>
      </Color>
-     <Shadows ShadowSpec="None"/>
-     <Options AttenuationBulbSize="0.2" IgnoreVisAreas="false" AffectVolumetricFog="true" VolumetricFogOnly="false" OnlyAffectThisArea="true" Ambient="false" FogRadialLobe="0" GIMode="None"/>
+     <Shadows ShadowSpec="None" ShadowBias="1" ShadowSlopeBias="1" ShadownResolution="1" ShadowUpdateMin="4" ShadowMinRes="0" ShadowUpdateRatio="1"/>
+     <Options AttenuationBulbSize="0.2" IgnoreVisAreas="false" AffectVolumetricFog="true" VolumetricFogOnly="false" OnlyAffectThisArea="true" LinkToSkyColor="false" Ambient="false" FogRadialLobe="0" GIMode="None"/>
      <Animations Style="19" Speed="1"/>
     </properties>
     <extensions />
@@ -559,7 +572,9 @@
     <children />
    </element>
    <element elementType="ComponentInstance" guid="8d560b47-611c-400d-958d-389a0e0dd622" name="Rigidbody" accessor="Public" typeGUID="912c6ce8-56f7-4ffa-9134-f98d4e307bd6">
-    <properties Networked="false" EnabledByDefault="true" Type="Rigid" SendCollisionSignal="true"/>
+    <properties Networked="false" EnabledByDefault="true" Resting="false" Type="Rigid" SendCollisionSignal="true">
+     <Buoyancy Damping="1" Density="1" Resistance="1"/>
+    </properties>
     <extensions />
     <children />
    </element>
@@ -569,7 +584,7 @@
     <children />
    </element>
    <element elementType="ComponentInstance" guid="60e70174-70be-42ce-a1a5-b26dd58af6b4" name="Interactive Switch" accessor="Private" typeGUID="fb9add5d-d384-4414-877d-d670a3fe94e4">
-    <properties IsEnabled="true" SwitchedOn="true" IsSingleUseOnly="false" SwitchVerb=""/>
+    <properties IsEnabled="true" IsSingleUseOnly="false" SwitchVerb="" SwitchedOn="true"/>
     <extensions />
     <children />
    </element>

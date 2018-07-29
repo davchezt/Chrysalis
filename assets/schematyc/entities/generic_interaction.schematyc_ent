@@ -68,7 +68,7 @@
    </element>
    <element elementType="Base" guid="535f2961-834f-4382-a404-73edfbf3c610" name="Base [Entity]">
     <classId domain="Env" guid="be845278-0dd2-409f-b8be-97895607c256"/>
-    <envClassProperties icon="%EDITOR%/objecticons/schematyc.bmp" bHideInEditor="false" bTriggerAreas="true"/>
+    <envClassProperties icon="%EDITOR%/objecticons/schematyc.bmp" bHideInEditor="false" bTriggerAreas="true" bCreatePerClient="false"/>
     <extensions />
     <children>
      <element elementType="ComponentInstance" guid="5dc6da55-f156-4ab0-b209-d0bc691c3360" name="Entity" accessor="Private" typeGUID="e88093df-904f-4c52-af38-911e26777cdc">
@@ -79,29 +79,39 @@
     </children>
    </element>
    <element elementType="ComponentInstance" guid="42da978a-2455-454b-8432-e58881862e8d" name="Mesh" accessor="Public" typeGUID="6ddd0033-6aaa-4b71-b8ea-108258205e29">
-    <transform x="1" y="1" z="1">
+    <transform>
      <translation>
-      <element element="0"/>
-      <element element="0"/>
-      <element element="0"/>
+      <position>
+       <element element="0"/>
+       <element element="0"/>
+       <element element="0"/>
+      </position>
      </translation>
-     <rotation x="0" y="0" z="0"/>
-     <scale />
+     <rotation x="0" y="-0" z="0"/>
+     <scale>
+      <element element="1"/>
+      <element element="1"/>
+      <element element="1"/>
+     </scale>
     </transform>
     <properties Type="RenderAndCollider" FilePath="%ENGINE%/EngineAssets/Objects/Default.cgf" Material="">
      <Render ShadowSpec="Low" IgnoreVisArea="false" ViewDistRatio="100" LODDistance="100" GIMode="None"/>
-     <Physics Mass="10" Density="0"/>
+     <Physics WeightType="EWeightType::Mass" Density="0" Mass="10"/>
     </properties>
     <extensions />
     <children />
    </element>
    <element elementType="ComponentInstance" guid="3e44cfc0-a2e9-46a1-bc16-f84794329976" name="Rigidbody" accessor="Public" typeGUID="912c6ce8-56f7-4ffa-9134-f98d4e307bd6">
-    <properties Networked="false" EnabledByDefault="true" Type="Rigid" SendCollisionSignal="false"/>
+    <properties Networked="false" EnabledByDefault="true" Resting="false" Type="Rigid" SendCollisionSignal="false">
+     <Buoyancy Damping="1" Density="1" Resistance="1"/>
+    </properties>
     <extensions />
     <children />
    </element>
    <element elementType="ComponentInstance" guid="f05a8922-8e88-4a2c-8061-d1ae990b1e2c" name="Generic Interaction" accessor="Public" typeGUID="c03d46f4-d1c9-45be-aac6-2362efd3abcc">
-    <properties IsEnabled="true" IsSingleUseOnly="false" InteractVerb=""/>
+    <properties IsEnabled="true" IsSingleUseOnly="false" InteractVerb="">
+     <Tags />
+    </properties>
     <extensions />
     <children />
    </element>
