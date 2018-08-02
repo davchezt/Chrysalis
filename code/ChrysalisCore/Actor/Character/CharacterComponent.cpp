@@ -27,13 +27,11 @@ void CCharacterComponent::ReflectType(Schematyc::CTypeDesc<CCharacterComponent>&
 
 void CCharacterComponent::Initialize()
 {
-	const auto pEntity = GetEntity();
-
 	// All characters are actors.
-	m_pActorComponent = pEntity->GetOrCreateComponent<CActorComponent>();
+	m_pActorComponent = m_pEntity->GetOrCreateComponent<CActorComponent>();
 
 	// Manage attributes.
-	m_pCharacterAttributesComponent = pEntity->GetOrCreateComponent<CCharacterAttributesComponent>();
+	m_pCharacterAttributesComponent = m_pEntity->GetOrCreateComponent<CCharacterAttributesComponent>();
 
 	// Get it into a known state.
 	OnResetState();

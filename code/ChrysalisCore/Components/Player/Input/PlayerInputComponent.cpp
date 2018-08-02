@@ -34,13 +34,11 @@ void CPlayerInputComponent::ReflectType(Schematyc::CTypeDesc<CPlayerInputCompone
 
 void CPlayerInputComponent::Initialize()
 {
-	const auto pEntity = GetEntity();
-
 	// Query for the player that owns this extension.
-	m_pPlayer = pEntity->GetComponent<CPlayerComponent>();
+	m_pPlayer = m_pEntity->GetComponent<CPlayerComponent>();
 
 	// Grab the camera manager.
-	m_pCameraManager = pEntity->GetComponent<CCameraManagerComponent>();
+	m_pCameraManager = m_pEntity->GetComponent<CCameraManagerComponent>();
 
 	// #HACK: #TODO: Is this right? We only want to register action maps on the local client.
 	if (GetEntityId() == gEnv->pGameFramework->GetClientActorId())

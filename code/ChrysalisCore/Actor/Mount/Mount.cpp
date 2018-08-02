@@ -22,8 +22,6 @@ void CMountComponent::ReflectType(Schematyc::CTypeDesc<CMountComponent>& desc)
 
 void CMountComponent::Initialize()
 {
-	const auto pEntity = GetEntity();
-
 	// Get it into a known state.
 	OnResetState();
 }

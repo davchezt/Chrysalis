@@ -33,16 +33,14 @@ void CActorControllerComponent::ReflectType(Schematyc::CTypeDesc<CActorControlle
 
 void CActorControllerComponent::Initialize()
 {
-	const auto pEntity = GetEntity();
-
 	// Mesh and animation.
-	m_pAdvancedAnimationComponent = pEntity->GetOrCreateComponent<Cry::DefaultComponents::CAdvancedAnimationComponent>();
+	m_pAdvancedAnimationComponent = m_pEntity->GetOrCreateComponent<Cry::DefaultComponents::CAdvancedAnimationComponent>();
 
 	// Character movement controller.
-	m_pCharacterControllerComponent = pEntity->GetOrCreateComponent<Cry::DefaultComponents::CCharacterControllerComponent>();
+	m_pCharacterControllerComponent = m_pEntity->GetOrCreateComponent<Cry::DefaultComponents::CCharacterControllerComponent>();
 
 	// We need to know which actor component we are paired with. The actor controller class is pretty worthless without this.
-	m_pActorComponent = pEntity->GetOrCreateComponent<CActorComponent>();
+	m_pActorComponent = m_pEntity->GetOrCreateComponent<CActorComponent>();
 	CRY_ASSERT_MESSAGE(m_pActorComponent, "The actor controller component must be paired with an actor component.");
 
 	// Initialise the movement state machine.

@@ -25,10 +25,8 @@ void CItemComponent::ReflectType(Schematyc::CTypeDesc<CItemComponent>& desc)
 
 void CItemComponent::Initialize()
 {
-	const auto pEntity = GetEntity();
-
 	// Manage our snaplocks.
-	m_pSnaplockComponent = pEntity->GetOrCreateComponent<CSnaplockComponent>();
+	m_pSnaplockComponent = m_pEntity->GetOrCreateComponent<CSnaplockComponent>();
 
 	// Provide them with an effects controller for this entity.
 	m_effectsController.Init(GetEntityId());

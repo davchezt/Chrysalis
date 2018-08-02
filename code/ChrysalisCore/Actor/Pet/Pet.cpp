@@ -22,8 +22,6 @@ void CPetComponent::ReflectType(Schematyc::CTypeDesc<CPetComponent>& desc)
 
 void CPetComponent::Initialize()
 {
-	const auto pEntity = GetEntity();
-
 	// Get it into a known state.
 	OnResetState();
 }

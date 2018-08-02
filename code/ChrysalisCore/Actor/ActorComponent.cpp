@@ -72,32 +72,30 @@ CActorComponent::~CActorComponent()
 
 void CActorComponent::Initialize()
 {
-	const auto pEntity = GetEntity();
-
 	// Mesh and animation.
-	m_pAdvancedAnimationComponent = pEntity->GetOrCreateComponent<Cry::DefaultComponents::CAdvancedAnimationComponent>();
+	m_pAdvancedAnimationComponent = m_pEntity->GetOrCreateComponent<Cry::DefaultComponents::CAdvancedAnimationComponent>();
 
 	// Character movement controller.
-	m_pCharacterControllerComponent = pEntity->GetOrCreateComponent<Cry::DefaultComponents::CCharacterControllerComponent>();
+	m_pCharacterControllerComponent = m_pEntity->GetOrCreateComponent<Cry::DefaultComponents::CCharacterControllerComponent>();
 
 	// Contoller.
-	m_pActorControllerComponent = pEntity->GetOrCreateComponent<CActorControllerComponent>();
+	m_pActorControllerComponent = m_pEntity->GetOrCreateComponent<CActorControllerComponent>();
 
 	// Inventory management.
-	m_pInventoryComponent = pEntity->GetOrCreateComponent<CInventoryComponent>();
+	m_pInventoryComponent = m_pEntity->GetOrCreateComponent<CInventoryComponent>();
 
 	// Equipment management.
-	m_pEquipmentComponent = pEntity->GetOrCreateComponent<CEquipmentComponent>();
+	m_pEquipmentComponent = m_pEntity->GetOrCreateComponent<CEquipmentComponent>();
 
 	// Give the actor a DRS proxy, since it will probably need one.
-	m_pDrsComponent = crycomponent_cast<IEntityDynamicResponseComponent*> (pEntity->CreateProxy(ENTITY_PROXY_DYNAMICRESPONSE));
+	m_pDrsComponent = crycomponent_cast<IEntityDynamicResponseComponent*> (m_pEntity->CreateProxy(ENTITY_PROXY_DYNAMICRESPONSE));
 
 	// For now, all actors will have awareness built-in, but this should default to not having it at some stage unless they are
 	// the player target.
-	m_pAwareness = pEntity->GetOrCreateComponent<CEntityAwarenessComponent>();
+	m_pAwareness = m_pEntity->GetOrCreateComponent<CEntityAwarenessComponent>();
 
 	// Manage our snaplocks.
-	m_pSnaplockComponent = pEntity->GetOrCreateComponent<CSnaplockComponent>();
+	m_pSnaplockComponent = m_pEntity->GetOrCreateComponent<CSnaplockComponent>();
 
 	// HACK: Need a way to add the default snaplocks in place. For now, I'm going to hard code them to test.
 	m_pSnaplockComponent->AddSnaplock(ISnaplock(SLT_ACTOR_HEAD, false));
@@ -121,14 +119,14 @@ void CActorComponent::Initialize()
 	//m_isAIControlled = false;
 
 	// Tells this instance to trigger areas.
-	pEntity->AddFlags(ENTITY_FLAG_TRIGGER_AREAS);
+	m_pEntity->AddFlags(ENTITY_FLAG_TRIGGER_AREAS);
 
 	// Are we the local player?
 	if (GetEntityId() == gEnv->pGameFramework->GetClientActorId())
 	{
 		// Tells this instance to trigger areas and that it's the local player.
-		pEntity->AddFlags(ENTITY_FLAG_TRIGGER_AREAS | ENTITY_FLAG_LOCAL_PLAYER);
-		CryLogAlways("CActorComponent::HandleEvent(): Entity \"%s\" became the local character!", pEntity->GetName());
+		m_pEntity->AddFlags(ENTITY_FLAG_TRIGGER_AREAS | ENTITY_FLAG_LOCAL_PLAYER);
+		CryLogAlways("CActorComponent::HandleEvent(): Entity \"%s\" became the local character!", m_pEntity->GetName());
 	}
 
 	// Reset the entity.
@@ -143,7 +141,7 @@ void CActorComponent::ProcessEvent(const SEntityEvent& event)
 		// Physicalize on level start for Launcher
 		case EEntityEvent::LevelStarted:
 
-			// Editor specific, physicalize on reset, property change or transform change
+		// Editor specific, physicalize on reset, property change or transform change
 		case EEntityEvent::Reset:
 		case EEntityEvent::EditorPropertyChanged:
 		case EEntityEvent::TransformChangeFinishedInEditor:
@@ -474,8 +472,11 @@ void CActorComponent::OnResetState()
 		// they are potentially different for every actor. 
 		m_actorMannequinParams = GetMannequinUserParams<SActorMannequinParams>(pContext);
 
+		// NOTE: This is the main cause of the errors with handling character movement and the crashes.
 		// We're going to clear all the mannequin state, and set it all up again.
-		m_pActionController->Reset();
+		//m_pActionController->Reset();
+		m_pActionController->Flush();
+		m_pActionController->Resume();
 
 		// Select a character definition based on first / third person mode. Hard coding the default scope isn't a great
 		// idea, but it's good enough for now. 
@@ -494,35 +495,33 @@ void CActorComponent::OnResetState()
 		auto locomotionAction = new CActorAnimationActionLocomotion();
 		QueueAction(*locomotionAction);
 
-		// Third person views allow a little extra control.
-		if (!IsViewFirstPerson())
-		{
-			//// Set the scope tag for look pose.
-			//SAnimationContext &animContext = pContext;
-			//animContext.state.Set(m_actorMannequinParams->tagIDs.ScopeLookPose, true);
+		//// Third person views allow a little extra control.
+		//if (!IsViewFirstPerson())
+		//{
+		//	//// Set the scope tag for look pose.
+		//	//SAnimationContext &animContext = pContext;
+		//	//animContext.state.Set(m_actorMannequinParams->tagIDs.ScopeLookPose, true);
 
-			//// Aim actions.
-			//if (CActorAnimationActionAimPose::IsSupported(pContext)
-			//	&& CActorAnimationActionAiming::IsSupported(pContext))
-			//{
-			//	m_pProceduralContextAim = static_cast<CProceduralContextAim*>(m_pActionController->FindOrCreateProceduralContext(CProceduralContextAim::GetCID()));
-			//	QueueAction(*new CActorAnimationActionAimPose());
-			//	QueueAction(*new CActorAnimationActionAiming());
-			//}
+		//	//// Aim actions.
+		//	//if (CActorAnimationActionAimPose::IsSupported(pContext)
+		//	//	&& CActorAnimationActionAiming::IsSupported(pContext))
+		//	//{
+		//	//	m_pProceduralContextAim = static_cast<CProceduralContextAim*>(m_pActionController->FindOrCreateProceduralContext(CProceduralContextAim::GetCID()));
+		//	//	QueueAction(*new CActorAnimationActionAimPose());
+		//	//	QueueAction(*new CActorAnimationActionAiming());
+		//	//}
 
-			// Look actions.
-			//if (CActorAnimationActionLookPose::IsSupported(pContext) // HACK: These tests are causing crashes on the second run through.
-				//&& CActorAnimationActionLooking::IsSupported(pContext))
-			{
-//				m_pProceduralContextLook = static_cast<CProceduralContextLook*>(m_pActionController->FindOrCreateProceduralContext(CProceduralContextLook::GetCID()));
-				
-				auto pX = m_pActionController->FindOrCreateProceduralContext(CProceduralContextLook::GetCID());
-				m_pProceduralContextLook = static_cast<CProceduralContextLook*>(pX);
+		//	// Look actions.
+		//	//if (CActorAnimationActionLookPose::IsSupported(pContext) // HACK: These tests are causing crashes on the second run through.
+		//		//&& CActorAnimationActionLooking::IsSupported(pContext))
+		//	{
+		//		const auto pX = m_pActionController->FindOrCreateProceduralContext(CProceduralContextLook::GetCID());
+		//		m_pProceduralContextLook = static_cast<CProceduralContextLook*>(pX);
 
-				QueueAction(*new CActorAnimationActionLookPose());
-				QueueAction(*new CActorAnimationActionLooking());
-			}
-		}
+		//		QueueAction(*new CActorAnimationActionLookPose());
+		//		QueueAction(*new CActorAnimationActionLooking());
+		//	}
+		//}
 	}
 }
 
@@ -797,10 +796,10 @@ void CActorComponent::InteractionEnd(IInteraction* pInteraction)
 // *** Allow control of the actor's animations / fragments / etc.
 // ***
 
-IActionController* CActorComponent::GetActionController() const
-{
-	return m_pActionController;
-}
+//IActionController* CActorComponent::GetActionController() const
+//{
+//	return m_pActionController;
+//}
 
 
 TagID CActorComponent::GetStanceTagId(EActorStance actorStance)

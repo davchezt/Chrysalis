@@ -34,18 +34,16 @@ void CPlayerComponent::ReflectType(Schematyc::CTypeDesc<CPlayerComponent>& desc)
 
 void CPlayerComponent::Initialize()
 {
-	const auto pEntity = GetEntity();
-
 	CryLogAlways("The player Id is %d - should be 30583.", GetEntityId());
 
 	// Create a camera manager for this player. We do this early, since character attachment code needs to make calls
 	// to a functioning camera.
-	m_pCameraManager = pEntity->CreateComponent<CCameraManagerComponent>();
+	m_pCameraManager = m_pEntity->CreateComponent<CCameraManagerComponent>();
 
 	// Acquire a player input component. At a later time it will be useful to check if a network version is needed, or
 	// perhaps AI / nullptr versions.
 	// NOTE: This component requires a pointer to a camera manager - so it must always load after that component.
-	m_pPlayerInput = pEntity->CreateComponent<CPlayerInputComponent>();
+	m_pPlayerInput = m_pEntity->CreateComponent<CPlayerInputComponent>();
 }
 
 

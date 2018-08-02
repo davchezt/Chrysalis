@@ -258,7 +258,7 @@ public:
 	
 	\return Null if it fails, else the action controller.
 	**/
-	virtual IActionController* GetActionController() const = 0;
+	//virtual IActionController* GetActionController() const = 0;
 
 
 	/**
@@ -597,7 +597,7 @@ private:
 public:
 	void QueueAction(IAction& pAction) override { m_pAdvancedAnimationComponent->QueueCustomFragment(pAction); };
 
-	virtual IActionController* GetActionController() const;
+	//virtual IActionController* GetActionController() const;
 
 	const SActorMannequinParams* GetMannequinParams() const { return m_actorMannequinParams; }
 
